@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour
     private Character1 character1MoveScript;
     private Character2 character2MoveScript;
 
-    private Transform c1RespawnPoint;
-    private Transform c2RespawnPoint;
+    public Vector3 c1RespawnPoint;
+    public Vector3 c2RespawnPoint;
 
     public int currentCharacter;
 
@@ -40,8 +40,8 @@ public class GameManager : MonoBehaviour
         character1MoveScript = character1.GetComponent<Character1>();
         character2MoveScript = character2.GetComponent<Character2>();
 
-        c1RespawnPoint = character1.transform;
-        c2RespawnPoint = character2.transform;
+        c1RespawnPoint = new Vector3(character1.transform.position.x, character1.transform.position.y, character1.transform.position.z);
+        c2RespawnPoint = new Vector3(character2.transform.position.x, character2.transform.position.y, character2.transform.position.z);
 
         character2MoveScript.enabled = false;
         currentCharacter = 1;
@@ -71,13 +71,15 @@ public class GameManager : MonoBehaviour
 
     public void RespawnCharacter(GameObject character)
     {
+        
         if (character.CompareTag("Character1"))
         {
-            character1.transform.position = c1RespawnPoint.transform.position;
+            
+            character.transform.position = c1RespawnPoint;
         }
         if (character.CompareTag("Character2"))
         {
-            character2.transform.position = c2RespawnPoint.transform.position;
+            character.transform.position = c2RespawnPoint;
         }
     }
 }
