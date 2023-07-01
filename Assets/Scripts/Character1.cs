@@ -47,4 +47,19 @@ public class Character1 : MonoBehaviour
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Door")
+        {
+            Door door = collision.gameObject.GetComponent<Door>();
+            if (door.correctCharacter == character)
+            {
+                door.Entered = true;
+                Debug.Log("DOOR");
+                character.SetActive(false);
+                GameManager.Instance.SwitchCharacter();
+            }
+        }
+    }
 }

@@ -52,20 +52,25 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.G))
         {
-            Debug.Log("Switch");
-            if (currentCharacter == 1)
-            {
-                character1MoveScript.enabled = false;
-                character2MoveScript.enabled = true;
-                currentCharacter = 2;
-            }
-            else if (currentCharacter == 2)
-            {
-                character2MoveScript.enabled = false;
-                character1MoveScript.enabled = true;
-                currentCharacter = 1;
-            }
+            SwitchCharacter();
 
+        }
+    }
+
+    public void SwitchCharacter()
+    {
+        Debug.Log("Switch");
+        if (currentCharacter == 1)
+        {
+            character1MoveScript.enabled = false;
+            character2MoveScript.enabled = true;
+            currentCharacter = 2;
+        }
+        else if (currentCharacter == 2)
+        {
+            character2MoveScript.enabled = false;
+            character1MoveScript.enabled = true;
+            currentCharacter = 1;
         }
     }
 
