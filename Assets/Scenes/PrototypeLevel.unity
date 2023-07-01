@@ -199,6 +199,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bdf11ab3c3d5bf45ab276fce3b6b61a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  c1RespawnPoint: {x: 0, y: 0, z: 0}
+  c2RespawnPoint: {x: 0, y: 0, z: 0}
   currentCharacter: 0
 --- !u!4 &426640882
 Transform:
@@ -3695,24 +3697,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29c42040d8e928d4699bb65dc1492359, type: 3}
---- !u!1 &5464369479657181304 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 476962300937481462, guid: 29c42040d8e928d4699bb65dc1492359, type: 3}
-  m_PrefabInstance: {fileID: 5464369479657181303}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5464369479657181305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5464369479657181304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf686989c3cf0954784d6f01e6a56a34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  character: {fileID: 0}
 --- !u!1001 &6262893866120505091
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3770,21 +3754,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13d1f171000c2c14eaf37d21d1fdf10c, type: 3}
---- !u!1 &6262893866120505092 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2370834450827717272, guid: 13d1f171000c2c14eaf37d21d1fdf10c, type: 3}
-  m_PrefabInstance: {fileID: 6262893866120505091}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6262893866120505093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6262893866120505092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf686989c3cf0954784d6f01e6a56a34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  character: {fileID: 0}
