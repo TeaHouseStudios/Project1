@@ -12,6 +12,8 @@ public class Character2 : MonoBehaviour
 
     private float horizontal;
 
+    bool facingRight = true;
+
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
@@ -26,6 +28,16 @@ public class Character2 : MonoBehaviour
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
+
+        if (horizontal > 0 && !facingRight)
+        {
+            Flip();
+        }
+
+        if (horizontal < 0 && facingRight)
+        {
+            Flip();
+        }
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
@@ -46,6 +58,15 @@ public class Character2 : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    }
+
+    private void Flip()
+    {
+        Vector3 currentScale = this.gameObject.transform.localScale;
+        currentScale.x *= -1;
+        this.gameObject.transform.localScale = currentScale;
+
+        facingRight = !facingRight;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
