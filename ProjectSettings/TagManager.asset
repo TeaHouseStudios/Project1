@@ -8,6 +8,7 @@ TagManager:
   - Character2
   - Hazard
   - Door
+  - Pickup
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - UI
   - Ground
   - Hazard
-  - 
+  - Pickup
   - 
   - 
   - 
@@ -50,6 +51,12 @@ TagManager:
     locked: 0
   - name: Level
     uniqueID: 4155196257
+    locked: 0
+  - name: Interactable
+    uniqueID: 3689960117
+    locked: 0
+  - name: Pickup
+    uniqueID: 2592051039
     locked: 0
   - name: Player
     uniqueID: 555200239

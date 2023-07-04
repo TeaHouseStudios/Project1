@@ -12,7 +12,7 @@ public class Character2 : MonoBehaviour
 
     private float horizontal;
 
-    bool facingRight = true;
+    public bool facingRight = true;
 
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
@@ -64,6 +64,9 @@ public class Character2 : MonoBehaviour
     {
         Vector3 currentScale = this.gameObject.transform.localScale;
         currentScale.x *= -1;
+
+        
+
         this.gameObject.transform.localScale = currentScale;
 
         facingRight = !facingRight;
