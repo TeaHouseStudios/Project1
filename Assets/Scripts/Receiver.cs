@@ -38,11 +38,11 @@ public class Receiver : MonoBehaviour
 
     public void Activate()
     {
-
+        Events.onReceiverActivated.Invoke(recIndex);
     }
 
     public void Deactivate()
     {
-
+        Events.onReceiverDeactivated.Invoke(recIndex);
     }
 }

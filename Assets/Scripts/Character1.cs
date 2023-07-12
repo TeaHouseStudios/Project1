@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,9 @@ public class Character1 : MonoBehaviour
     private float horizontal;
 
     bool facingRight = true;
+
+    public bool isOnPlatform;
+    public Rigidbody2D platformRB;
 
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
@@ -52,7 +56,17 @@ public class Character1 : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
+        float targetSpeed = horizontal * moveSpeed;
+        if (isOnPlatform)
+        {
+            rb.velocity = new Vector2(targetSpeed + platformRB.velocity.x, rb.velocity.y);
+        }
+        else
+        {
+            rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
+        }
+
+
     }
 
     private bool IsGrounded()
