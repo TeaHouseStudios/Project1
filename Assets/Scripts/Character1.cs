@@ -21,6 +21,9 @@ public class Character1 : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
+    public Transform interactDetect;
+    public float rayDistance = 2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +35,7 @@ public class Character1 : MonoBehaviour
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
+        InteractRaycast();
 
         if (horizontal > 0 && !facingRight)
         {
@@ -51,6 +55,23 @@ public class Character1 : MonoBehaviour
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+        }
+    }
+
+    public void InteractRaycast()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(interactDetect.position, Vector2.right * transform.localScale, rayDistance);
+        GameObject pc;
+        if (hit.collider != null && hit.collider.tag == "Interactable")
+        {
+            pc = hit.collider.gameObject;
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                //HANDLE PC INPUT
+                //Debug.Log("PC ACTIVATED");
+                pc.GetComponent<PC>().Activate();
+            }
+
         }
     }
 

@@ -39,11 +39,15 @@ public class BoomarangPlatform : MonoBehaviour
     {
         Events.onReceiverActivated.AddListener(Activated);
         Events.onReceiverDeactivated.AddListener(Deactivated);
+        Events.onPcActivated.AddListener(Activated);
+        Events.onPcDeactivated.AddListener(Deactivated);
     }
     private void OnDisable()
     {
-        Events.onReceiverActivated.AddListener(Activated);
-        Events.onReceiverDeactivated.AddListener(Deactivated);
+        Events.onReceiverActivated.RemoveListener(Activated);
+        Events.onReceiverDeactivated.RemoveListener(Deactivated);
+        Events.onPcActivated.RemoveListener(Activated);
+        Events.onPcDeactivated.RemoveListener(Deactivated);
     }
 
     // Update is called once per frame
