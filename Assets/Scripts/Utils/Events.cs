@@ -8,6 +8,9 @@ public static class Events
     //public static readonly Evt<Table, TableState> onTableStateChanged = new Evt<Table, TableState>();
     public static readonly Evt<int> onReceiverActivated = new Evt<int>();
     public static readonly Evt<int> onReceiverDeactivated = new Evt<int>();
+
+    public static readonly Evt<int> onPcActivated = new Evt<int>();
+    public static readonly Evt<int> onPcDeactivated = new Evt<int>();
 }
 
 public class Evt

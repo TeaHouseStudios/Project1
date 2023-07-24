@@ -9,6 +9,7 @@ TagManager:
   - Hazard
   - Door
   - Pickup
+  - Interactable
   layers:
   - Default
   - TransparentFX
