@@ -20,20 +20,28 @@ public class Receiver : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<Box>().boxIndex == recIndex && isActive == false)
+        if (collision.GetComponent<Box>() != null)
         {
-            isActive = true;
-            Activate();
+            if (collision.GetComponent<Box>().boxIndex == recIndex && isActive == false)
+            {
+                isActive = true;
+                Activate();
+            }
         }
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.GetComponent<Box>().boxIndex == recIndex && isActive == true)
+        if (collision.GetComponent<Box>() != null)
         {
-            isActive = false;
-            Deactivate();
+            if (collision.GetComponent<Box>().boxIndex == recIndex && isActive == true)
+            {
+                isActive = false;
+                Deactivate();
+            }
         }
+        
     }
 
     public void Activate()
