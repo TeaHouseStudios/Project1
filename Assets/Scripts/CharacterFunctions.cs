@@ -27,6 +27,15 @@ public class CharacterFunctions : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Hazard")
+        {
+
+            KillCharacter();
+        }
+    }
+
     public void KillCharacter()
     {
         GameManager.Instance.RespawnCharacter(character);
