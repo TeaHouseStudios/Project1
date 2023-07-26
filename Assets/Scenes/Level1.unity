@@ -11534,6 +11534,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 1603748669450686032, guid: cef5efb1fefb4f647afd108223eb2c92, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 1603748669450686032, guid: cef5efb1fefb4f647afd108223eb2c92, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1603748669450686033, guid: cef5efb1fefb4f647afd108223eb2c92, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 1603748669450686033, guid: cef5efb1fefb4f647afd108223eb2c92, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1603748669450686034, guid: cef5efb1fefb4f647afd108223eb2c92, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1963501df0af82f4ba1d3da0af407399, type: 3}
     - target: {fileID: 1603748669450686035, guid: cef5efb1fefb4f647afd108223eb2c92, type: 3}
       propertyPath: platIndex
       value: 2
