@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -16,8 +17,15 @@ public class GameManager : MonoBehaviour
 
     public int currentCharacter;
 
+    public int character1Deaths;
+    public int character2Deaths;
+
+    public TextMeshProUGUI character1DeathsText;
+    public TextMeshProUGUI character2DeathsText;
+
     private void Awake()
     {
+        
         // If there is an instance, and it's not me, delete myself.
 
         if (Instance != null && Instance != this)
@@ -37,6 +45,9 @@ public class GameManager : MonoBehaviour
         character1 = GameObject.FindGameObjectWithTag("Character1");
         character2 = GameObject.FindGameObjectWithTag("Character2");
 
+        character1Deaths = 0;
+        character2Deaths = 0;
+
         character1MoveScript = character1.GetComponent<Character1>();
         character2MoveScript = character2.GetComponent<Character2>();
 
@@ -55,6 +66,9 @@ public class GameManager : MonoBehaviour
             SwitchCharacter();
 
         }
+
+        character1DeathsText.text = "Character 1 Deaths: " + character1Deaths.ToString();
+        character2DeathsText.text = "Character 2 Deaths: " + character2Deaths.ToString();
     }
 
     public void SwitchCharacter()
