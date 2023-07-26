@@ -38,6 +38,7 @@ public class CharacterFunctions : MonoBehaviour
 
     public void KillCharacter()
     {
+        character.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         if (character.gameObject.tag == "Character1")
         {
             GameManager.Instance.character1Deaths++;
