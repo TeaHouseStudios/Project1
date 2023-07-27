@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI character1DeathsText;
     public TextMeshProUGUI character2DeathsText;
+
+    public int numCharactersBeatenLevel = 0;
+    private bool hasRun = false;
 
     private void Awake()
     {
@@ -69,6 +73,14 @@ public class GameManager : MonoBehaviour
 
         character1DeathsText.text = "Character 1 Deaths: " + character1Deaths.ToString();
         character2DeathsText.text = "Character 2 Deaths: " + character2Deaths.ToString();
+
+        
+        if (numCharactersBeatenLevel >= 2 && hasRun == false)
+        {
+            EndLevel();
+            //ONLY RUN ONCE
+            hasRun = true; 
+        }
     }
 
     public void SwitchCharacter()
@@ -100,5 +112,12 @@ public class GameManager : MonoBehaviour
         {
             character.transform.position = c2RespawnPoint;
         }
+    }
+
+    public void EndLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //Play Fade out animation!!!
+        //GO TO NEXT LEVEL
     }
 }

@@ -115,6 +115,7 @@ public class Character1 : MonoBehaviour
                 Debug.Log("DOOR");
                 character.SetActive(false);
                 GameManager.Instance.SwitchCharacter();
+                GameManager.Instance.numCharactersBeatenLevel++;
             }
         }
     }
