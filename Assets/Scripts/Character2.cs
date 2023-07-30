@@ -5,6 +5,7 @@ using UnityEngine;
 public class Character2 : MonoBehaviour
 {
     private Rigidbody2D rb;
+    public Animator animator;
 
     private GameObject character;
     public float moveSpeed = 8f;
@@ -23,6 +24,7 @@ public class Character2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         character = this.gameObject;
     }
@@ -53,12 +55,23 @@ public class Character2 : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
             }
+
+            //CHECK FOR JUMPING FOR ANIMATION
+            if (rb.velocity.y > 0.01)
+            {
+                animator.SetBool("IsJumping", true);
+            }
+            else
+            {
+                animator.SetBool("IsJumping", false);
+            }
         }
     }
 
     private void FixedUpdate()
     {
         float targetSpeed = horizontal * moveSpeed;
+        animator.SetFloat("Speed", Mathf.Abs(targetSpeed));
         if (isOnPlatform)
         {
             rb.velocity = new Vector2(targetSpeed + platformRB.velocity.x, rb.velocity.y);
