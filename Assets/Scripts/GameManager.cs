@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
 
     public int numCharactersBeatenLevel = 0;
     private bool hasRun = false;
+
+    public GameObject characterPortraitImage;
+    public Sprite character1Portrait;
+    public Sprite character2Portrait;
 
     private void Awake()
     {
@@ -84,12 +88,12 @@ public class GameManager : MonoBehaviour
         Debug.Log("Switch");
         if (currentCharacter == 1)
         {
-            
+            characterPortraitImage.GetComponent<Image>().sprite = character2Portrait;
             currentCharacter = 2;
         }
         else if (currentCharacter == 2)
         {
-            
+            characterPortraitImage.GetComponent<Image>().sprite = character1Portrait;
             currentCharacter = 1;
         }
     }
