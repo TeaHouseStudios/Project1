@@ -6,6 +6,7 @@ using UnityEngine;
 public class Character1 : MonoBehaviour
 {
     private Rigidbody2D rb;
+    public Animator animator;
 
     private GameObject character;
     public float moveSpeed = 8f;
@@ -27,6 +28,7 @@ public class Character1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         character = this.gameObject;
     }
@@ -52,11 +54,23 @@ public class Character1 : MonoBehaviour
             if (Input.GetButtonDown("Jump") && IsGrounded())
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
+               
             }
 
             if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
             {
                 rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+                
+            }
+
+            //CHECK FOR JUMPING FOR ANIMATION
+            if (rb.velocity.y > 0.01)
+            {
+                animator.SetBool("IsJumping", true);
+            }
+            else
+            {
+                animator.SetBool("IsJumping", false);
             }
         }
         
@@ -82,6 +96,8 @@ public class Character1 : MonoBehaviour
     private void FixedUpdate()
     {
         float targetSpeed = horizontal * moveSpeed;
+        animator.SetFloat("Speed", Mathf.Abs(targetSpeed));
+
         if (isOnPlatform)
         {
             rb.velocity = new Vector2(targetSpeed + platformRB.velocity.x, rb.velocity.y);
@@ -97,6 +113,7 @@ public class Character1 : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        
     }
 
     private void Flip()
