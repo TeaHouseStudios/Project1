@@ -30,26 +30,29 @@ public class Character2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-
-        if (horizontal > 0 && !facingRight)
+        if (GameManager.Instance.currentCharacter == 2)
         {
-            Flip();
-        }
+            horizontal = Input.GetAxisRaw("Horizontal");
 
-        if (horizontal < 0 && facingRight)
-        {
-            Flip();
-        }
+            if (horizontal > 0 && !facingRight)
+            {
+                Flip();
+            }
 
-        if (Input.GetButtonDown("Jump") && IsGrounded())
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
-        }
+            if (horizontal < 0 && facingRight)
+            {
+                Flip();
+            }
 
-        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            if (Input.GetButtonDown("Jump") && IsGrounded())
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
+            }
+
+            if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            }
         }
     }
 

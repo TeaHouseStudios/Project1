@@ -26,7 +26,7 @@ public class GrabObjects : MonoBehaviour
         if (hit.collider != null && hit.collider.tag == "Pickup")
         {
             pickup = hit.collider.gameObject;
-            if (Input.GetKeyDown(KeyCode.E) && !carryingBox)
+            if (Input.GetKeyDown(KeyCode.E) && !carryingBox && GameManager.Instance.currentCharacter == 2)
             {
                 carryingBox = true;
                 pickup.transform.parent = boxHolder;
@@ -35,7 +35,7 @@ public class GrabObjects : MonoBehaviour
                
             }
 
-            else if (Input.GetKeyDown(KeyCode.E) && carryingBox)
+            else if (Input.GetKeyDown(KeyCode.E) && carryingBox && GameManager.Instance.currentCharacter == 2)
             {
                 carryingBox = false;
                 pickup.transform.parent = null;

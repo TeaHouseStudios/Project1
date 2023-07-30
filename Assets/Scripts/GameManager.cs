@@ -10,9 +10,6 @@ public class GameManager : MonoBehaviour
     private GameObject character1;
     private GameObject character2;
 
-    private Character1 character1MoveScript;
-    private Character2 character2MoveScript;
-
     public Vector3 c1RespawnPoint;
     public Vector3 c2RespawnPoint;
 
@@ -52,13 +49,12 @@ public class GameManager : MonoBehaviour
         character1Deaths = 0;
         character2Deaths = 0;
 
-        character1MoveScript = character1.GetComponent<Character1>();
-        character2MoveScript = character2.GetComponent<Character2>();
+        
 
         c1RespawnPoint = new Vector3(character1.transform.position.x, character1.transform.position.y, character1.transform.position.z);
         c2RespawnPoint = new Vector3(character2.transform.position.x, character2.transform.position.y, character2.transform.position.z);
 
-        character2MoveScript.enabled = false;
+        
         currentCharacter = 1;
     }
 
@@ -88,14 +84,12 @@ public class GameManager : MonoBehaviour
         Debug.Log("Switch");
         if (currentCharacter == 1)
         {
-            character1MoveScript.enabled = false;
-            character2MoveScript.enabled = true;
+            
             currentCharacter = 2;
         }
         else if (currentCharacter == 2)
         {
-            character2MoveScript.enabled = false;
-            character1MoveScript.enabled = true;
+            
             currentCharacter = 1;
         }
     }

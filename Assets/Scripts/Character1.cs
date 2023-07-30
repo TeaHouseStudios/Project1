@@ -34,28 +34,32 @@ public class Character1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-        InteractRaycast();
-
-        if (horizontal > 0 && !facingRight)
+        if (GameManager.Instance.currentCharacter == 1)
         {
-            Flip();
-        }
+            horizontal = Input.GetAxisRaw("Horizontal");
+            InteractRaycast();
 
-        if (horizontal < 0 && facingRight)
-        {
-            Flip();
-        }
+            if (horizontal > 0 && !facingRight)
+            {
+                Flip();
+            }
 
-        if (Input.GetButtonDown("Jump") && IsGrounded())
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
-        }
+            if (horizontal < 0 && facingRight)
+            {
+                Flip();
+            }
 
-        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            if (Input.GetButtonDown("Jump") && IsGrounded())
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
+            }
+
+            if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            }
         }
+        
     }
 
     public void InteractRaycast()
@@ -65,7 +69,7 @@ public class Character1 : MonoBehaviour
         if (hit.collider != null && hit.collider.tag == "Interactable")
         {
             pc = hit.collider.gameObject;
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && GameManager.Instance.currentCharacter == 1)
             {
                 //HANDLE PC INPUT
                 //Debug.Log("PC ACTIVATED");
