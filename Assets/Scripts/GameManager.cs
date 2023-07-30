@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -85,16 +86,19 @@ public class GameManager : MonoBehaviour
 
     public void SwitchCharacter()
     {
+        
         Debug.Log("Switch");
         if (currentCharacter == 1)
         {
             characterPortraitImage.GetComponent<Image>().sprite = character2Portrait;
             currentCharacter = 2;
+            Events.onSwitch.Invoke(currentCharacter);
         }
         else if (currentCharacter == 2)
         {
             characterPortraitImage.GetComponent<Image>().sprite = character1Portrait;
             currentCharacter = 1;
+            Events.onSwitch.Invoke(currentCharacter);
         }
     }
 
