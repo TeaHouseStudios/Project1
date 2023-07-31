@@ -231,7 +231,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6177391858153845374, guid: 0f9cb554dfe8a3d4098d4dacad5a304a, type: 3}
       propertyPath: boxIndex
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f9cb554dfe8a3d4098d4dacad5a304a, type: 3}
@@ -1106,11 +1106,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1603748669171655360, guid: cef5efb1fefb4f647afd108223eb2c92, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1603748669171655360, guid: cef5efb1fefb4f647afd108223eb2c92, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: -0.00000047683716
       objectReference: {fileID: 0}
     - target: {fileID: 1603748669450686034, guid: cef5efb1fefb4f647afd108223eb2c92, type: 3}
       propertyPath: m_Sprite
