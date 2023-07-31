@@ -33,6 +33,23 @@ public class Character1 : MonoBehaviour
         character = this.gameObject;
     }
 
+    private void OnEnable()
+    {
+        Events.onSwitch.AddListener(ResetMovement);
+    }
+    private void OnDisable()
+    {
+        Events.onSwitch.RemoveListener(ResetMovement);
+    }
+
+    void ResetMovement(int newCharacter)
+    {
+        if (newCharacter == 2)
+        {
+            horizontal = 0;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -62,18 +79,17 @@ public class Character1 : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
                 
             }
-
-            //CHECK FOR JUMPING FOR ANIMATION
-            if (rb.velocity.y > 0.01)
-            {
-                animator.SetBool("IsJumping", true);
-            }
-            else
-            {
-                animator.SetBool("IsJumping", false);
-            }
         }
-        
+        //CHECK FOR JUMPING FOR ANIMATION
+        if (rb.velocity.y > 0.01)
+        {
+            animator.SetBool("IsJumping", true);
+        }
+        else
+        {
+            animator.SetBool("IsJumping", false);
+        }
+
     }
 
     public void InteractRaycast()
