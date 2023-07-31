@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI character1DeathsText;
     public TextMeshProUGUI character2DeathsText;
+    public TextMeshProUGUI timerText;
+    public float timer;
 
     public int numCharactersBeatenLevel = 0;
     private bool hasRun = false;
@@ -48,6 +50,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        timer = 0.0f;
         character1 = GameObject.FindGameObjectWithTag("Character1");
         character2 = GameObject.FindGameObjectWithTag("Character2");
 
@@ -72,6 +75,9 @@ public class GameManager : MonoBehaviour
 
         }
 
+        timer = timer += Time.deltaTime;
+        UpdateTimer(timer);
+
         character1DeathsText.text = "Character 1 Deaths: " + character1Deaths.ToString();
         character2DeathsText.text = "Character 2 Deaths: " + character2Deaths.ToString();
 
@@ -82,6 +88,14 @@ public class GameManager : MonoBehaviour
             //ONLY RUN ONCE
             hasRun = true; 
         }
+    }
+
+    void UpdateTimer(float currentTime)
+    {
+        float minutes = Mathf.FloorToInt(currentTime / 60); 
+        float seconds = Mathf.FloorToInt(currentTime % 60);
+
+        
     }
 
     public void SwitchCharacter()
