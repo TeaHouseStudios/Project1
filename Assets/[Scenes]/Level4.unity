@@ -12363,6 +12363,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8352714990822764816, guid: a6bccbeb7adf5de4fbdd5d382bcd83e1, type: 3}
+      propertyPath: timerText
+      value: 
+      objectReference: {fileID: 2069882073}
+    - target: {fileID: 8352714990822764816, guid: a6bccbeb7adf5de4fbdd5d382bcd83e1, type: 3}
       propertyPath: character1DeathsText
       value: 
       objectReference: {fileID: 2069882072}
@@ -13259,6 +13263,17 @@ MonoBehaviour:
 --- !u!114 &2069882072 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7866430534503782388, guid: 8a0cefe276e93fa4093ee7ff4e7516ba, type: 3}
+  m_PrefabInstance: {fileID: 2069882069}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2069882073 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 903492361, guid: 8a0cefe276e93fa4093ee7ff4e7516ba, type: 3}
   m_PrefabInstance: {fileID: 2069882069}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
