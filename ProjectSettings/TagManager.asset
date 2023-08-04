@@ -10,6 +10,7 @@ TagManager:
   - Door
   - Pickup
   - Interactable
+  - Ground
   layers:
   - Default
   - TransparentFX
