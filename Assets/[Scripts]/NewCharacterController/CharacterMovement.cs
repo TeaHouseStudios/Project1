@@ -7,7 +7,6 @@ public class CharacterMovement : MonoBehaviour
 {
     public enum CharacterState
     {
-        isRunning,
         isJumping,
         isFalling,
         isGrounded,
@@ -66,7 +65,8 @@ public class CharacterMovement : MonoBehaviour
 
     private void Animation()
     {
-
+        int horizontal = Mathf.Abs((int)Input.GetAxisRaw("Horizontal"));
+        // set animation speed variable to INT horizontal***
     }
 
     private void Movement()
