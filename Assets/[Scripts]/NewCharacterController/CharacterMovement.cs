@@ -29,6 +29,10 @@ public class CharacterMovement : MonoBehaviour
     [Header("Jump")]
     [SerializeField] private float jumpVelocity;
     [SerializeField] private float fallMultiplier = 2f, holdJumpMultiplier = 3.5f, maxFallSpeed = 30;
+    [SerializeField] private float coyoteTime = 0.15f;
+    private float coyoteTimeCounter;
+    [SerializeField] private float jumpBufferTime = 0.15f;
+    private float jumpBufferCounter;
 
 
     // Start is called before the first frame update
@@ -81,6 +85,23 @@ public class CharacterMovement : MonoBehaviour
             }
         }
 
+        if (currentState == CharacterState.isGrounded)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+        if (Input.GetButtonDown("Jump"))
+        {
+            jumpBufferCounter = jumpBufferTime;
+        }
+        else
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+
         //MOVEMENT AND JUMPING
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
@@ -97,7 +118,7 @@ public class CharacterMovement : MonoBehaviour
         }
 
         //jump
-        if (currentState == CharacterState.isGrounded && Input.GetButtonDown("Jump"))
+        if (coyoteTimeCounter > 0f && jumpBufferCounter > 0)
         {
             Jump();
         }
@@ -110,6 +131,8 @@ public class CharacterMovement : MonoBehaviour
 
     void Jump()
     {
+        jumpBufferCounter = 0f;
+        coyoteTimeCounter = 0f;
         rb.velocity = Vector2.up * jumpVelocity;
         ChangeState(CharacterState.isJumping);
     }
