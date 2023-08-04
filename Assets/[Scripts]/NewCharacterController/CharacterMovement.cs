@@ -28,11 +28,12 @@ public class CharacterMovement : MonoBehaviour
 
     [Header("Jump")]
     [SerializeField] private float jumpVelocity;
-    [SerializeField] private float fallMultiplier = 2f, holdJumpMultiplier = 3.5f, maxFallSpeed = 30;
+    [SerializeField] private float fallMultiplier = 2f;
     [SerializeField] private float coyoteTime = 0.15f;
     private float coyoteTimeCounter;
     [SerializeField] private float jumpBufferTime = 0.15f;
     private float jumpBufferCounter;
+    Vector2 vecGravity;
 
 
     // Start is called before the first frame update
@@ -40,6 +41,7 @@ public class CharacterMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         currentState = CharacterState.isGrounded;
+        vecGravity = new Vector2 (0, -Physics2D.gravity.y);
     }
 
     // Update is called once per frame
@@ -105,35 +107,25 @@ public class CharacterMovement : MonoBehaviour
         //MOVEMENT AND JUMPING
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
-        //Changes gravity so you fall faster (makes it feel less floaty when jumping)
-        if (rb.velocity.y < -0.5)
-        {
-            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-            ChangeState(CharacterState.isFalling);
-        }
-        //if jump is not held more gravity is applied causing a shorter jump (tap jump for less height, hold for more height)
-        else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
-        {
-            rb.velocity += Vector2.up * Physics2D.gravity.y * (holdJumpMultiplier - 1) * Time.deltaTime;
-        }
-
         //jump
         if (coyoteTimeCounter > 0f && jumpBufferCounter > 0)
         {
             Jump();
         }
-        //speed cap
-        if (rb.velocity.y < -maxFallSpeed)
+
+        if (rb.velocity.y < 0)
         {
-            rb.velocity = new Vector2(rb.velocity.x, -maxFallSpeed);
+            rb.velocity -= vecGravity * fallMultiplier * Time.deltaTime;
         }
+        
     }
 
     void Jump()
     {
         jumpBufferCounter = 0f;
         coyoteTimeCounter = 0f;
-        rb.velocity = Vector2.up * jumpVelocity;
+        //rb.velocity = Vector2.up * jumpVelocity;
+        rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);
         ChangeState(CharacterState.isJumping);
     }
 
