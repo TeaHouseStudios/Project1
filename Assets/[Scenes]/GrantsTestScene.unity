@@ -3279,6 +3279,7 @@ MonoBehaviour:
   jumpVelocity: 14
   fallMultiplier: 8
   holdJumpMultiplier: 4
+  maxFallSpeed: 30
 --- !u!1 &1704106919
 GameObject:
   m_ObjectHideFlags: 0

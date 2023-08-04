@@ -28,7 +28,7 @@ public class CharacterMovement : MonoBehaviour
 
     [Header("Jump")]
     [SerializeField] private float jumpVelocity;
-    [SerializeField] private float fallMultiplier = 2f, holdJumpMultiplier = 3.5f;
+    [SerializeField] private float fallMultiplier = 2f, holdJumpMultiplier = 3.5f, maxFallSpeed = 30;
 
 
     // Start is called before the first frame update
@@ -100,6 +100,11 @@ public class CharacterMovement : MonoBehaviour
         if (currentState == CharacterState.isGrounded && Input.GetButtonDown("Jump"))
         {
             Jump();
+        }
+        //speed cap
+        if (rb.velocity.y < -maxFallSpeed)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, -maxFallSpeed);
         }
     }
 
