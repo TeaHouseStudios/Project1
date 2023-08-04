@@ -115,6 +115,7 @@ public class CharacterMovement : MonoBehaviour
 
         if (rb.velocity.y < 0)
         {
+            
             rb.velocity -= vecGravity * fallMultiplier * Time.deltaTime;
         }
         
