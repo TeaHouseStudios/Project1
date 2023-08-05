@@ -14,6 +14,7 @@ public class CharacterMovement : MonoBehaviour
     }
 
     [Header("Unity")]
+    public int characterIndex;
     public CharacterState currentState;
     public Rigidbody2D rb;
     public Animator animator;
@@ -71,53 +72,57 @@ public class CharacterMovement : MonoBehaviour
 
     private void Movement()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-
-        //CHECK FOR FLIPPING CHARACTER
-        if (currentState != CharacterState.isDead)
+        if (characterIndex == GameManager.Instance.currentCharacter)
         {
-            if (horizontal > 0 && !facingRight)
+            float horizontal = Input.GetAxisRaw("Horizontal");
+
+            //CHECK FOR FLIPPING CHARACTER
+            if (currentState != CharacterState.isDead)
             {
-                Flip();
+                if (horizontal > 0 && !facingRight)
+                {
+                    Flip();
+                }
+
+                if (horizontal < 0 && facingRight)
+                {
+                    Flip();
+                }
             }
 
-            if (horizontal < 0 && facingRight)
+            if (currentState == CharacterState.isGrounded)
             {
-                Flip();
+                coyoteTimeCounter = coyoteTime;
+            }
+            else
+            {
+                coyoteTimeCounter -= Time.deltaTime;
+            }
+            if (Input.GetButtonDown("Jump"))
+            {
+                jumpBufferCounter = jumpBufferTime;
+            }
+            else
+            {
+                jumpBufferCounter -= Time.deltaTime;
+            }
+
+            //MOVEMENT AND JUMPING
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+
+            //jump
+            if (coyoteTimeCounter > 0f && jumpBufferCounter > 0)
+            {
+                Jump();
+            }
+
+            if (rb.velocity.y < 0)
+            {
+
+                rb.velocity -= vecGravity * fallMultiplier * Time.deltaTime;
             }
         }
-
-        if (currentState == CharacterState.isGrounded)
-        {
-            coyoteTimeCounter = coyoteTime;
-        }
-        else
-        {
-            coyoteTimeCounter -= Time.deltaTime;
-        }
-        if (Input.GetButtonDown("Jump"))
-        {
-            jumpBufferCounter = jumpBufferTime;
-        }
-        else
-        {
-            jumpBufferCounter -= Time.deltaTime;
-        }
-
-        //MOVEMENT AND JUMPING
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
-
-        //jump
-        if (coyoteTimeCounter > 0f && jumpBufferCounter > 0)
-        {
-            Jump();
-        }
-
-        if (rb.velocity.y < 0)
-        {
-            
-            rb.velocity -= vecGravity * fallMultiplier * Time.deltaTime;
-        }
+        
         
     }
 
@@ -125,7 +130,6 @@ public class CharacterMovement : MonoBehaviour
     {
         jumpBufferCounter = 0f;
         coyoteTimeCounter = 0f;
-        //rb.velocity = Vector2.up * jumpVelocity;
         rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);
         ChangeState(CharacterState.isJumping);
     }
