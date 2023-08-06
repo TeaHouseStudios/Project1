@@ -23,7 +23,7 @@ public class CharacterFunctions : MonoBehaviour
         if (collision.gameObject.tag == "Hazard")
         {
            
-            KillCharacter();
+            //KillCharacter();
         }
     }
 
@@ -32,21 +32,9 @@ public class CharacterFunctions : MonoBehaviour
         if (collision.gameObject.tag == "Hazard")
         {
 
-            KillCharacter();
+            //KillCharacter();
         }
     }
 
-    public void KillCharacter()
-    {
-        character.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-        if (character.gameObject.tag == "Character1")
-        {
-            GameManager.Instance.character1Deaths++;
-        }
-        else
-        {
-            GameManager.Instance.character2Deaths++;
-        }
-        GameManager.Instance.RespawnCharacter(character);
-    }
+    
 }

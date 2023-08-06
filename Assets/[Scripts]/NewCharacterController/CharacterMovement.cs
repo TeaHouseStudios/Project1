@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.TextCore.Text;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class CharacterMovement : MonoBehaviour
     public Animator animator;
     public CapsuleCollider2D playerBody;
     public CapsuleCollider2D playerFeet;
+    public bool hasEnteredDoor = false;
+    public bool isDead = false;
 
     [Header("Movement")]
     [SerializeField] private float speed = 5;
@@ -144,12 +147,36 @@ public class CharacterMovement : MonoBehaviour
         facingRight = !facingRight;
     }
 
+    public void KillCharacter()
+    {
+        if (!isDead)
+        {
+            isDead = true;
+            this.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            if (characterIndex == 1)
+            {
+                GameManager.Instance.character1Deaths++;
+            }
+            else
+            {
+                GameManager.Instance.character2Deaths++;
+            }
+            GameManager.Instance.RespawnCharacter(characterIndex);
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground") && collision.otherCollider == playerFeet)
         {
             //LANDING
             ChangeState(CharacterState.isGrounded);
+        }
+
+        if (collision.gameObject.tag == "Hazard")
+        {
+
+            KillCharacter();
         }
     }
 
@@ -159,6 +186,24 @@ public class CharacterMovement : MonoBehaviour
         {
             
             ChangeState(CharacterState.isFalling);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Door" && !hasEnteredDoor)
+        {
+            Door door = collision.gameObject.GetComponent<Door>();
+            if (door.doorIndex == characterIndex)
+            {
+                hasEnteredDoor = true;
+                door.Entered = true;
+                Debug.Log("DOOR");
+                gameObject.SetActive(false);
+                GameManager.Instance.SwitchCharacter();
+                GameManager.Instance.numCharactersBeatenLevel++;
+                
+            }
         }
     }
 

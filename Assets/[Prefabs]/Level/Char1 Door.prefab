@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0be49bb88c907ba488e529f05e89f180, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  correctCharacter: {fileID: 0}
+  doorIndex: 1
   Entered: 0
 --- !u!61 &3355476614338220611
 BoxCollider2D:

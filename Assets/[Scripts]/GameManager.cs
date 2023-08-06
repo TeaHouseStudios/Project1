@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     public Sprite character1Portrait;
     public Sprite character2Portrait;
 
+
     private void Awake()
     {
         
@@ -116,17 +117,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void RespawnCharacter(GameObject character)
+    public void RespawnCharacter(int characterIndex)
     {
         
-        if (character.CompareTag("Character1"))
+        if (characterIndex == 1)
         {
+            character1.transform.position = c1RespawnPoint;
+            character1.GetComponent<CharacterMovement>().isDead = false;
             
-            character.transform.position = c1RespawnPoint;
         }
-        if (character.CompareTag("Character2"))
+        else
         {
-            character.transform.position = c2RespawnPoint;
+            character2.transform.position = c2RespawnPoint;
+            character2.GetComponent<CharacterMovement>().isDead = false;
+            
         }
     }
 

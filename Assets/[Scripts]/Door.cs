@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public GameObject correctCharacter;
+    public int doorIndex;
     public bool Entered = false;
     // Start is called before the first frame update
     void Start()
