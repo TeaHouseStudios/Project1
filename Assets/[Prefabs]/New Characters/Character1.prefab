@@ -256,11 +256,15 @@ MonoBehaviour:
   animator: {fileID: 0}
   playerBody: {fileID: 2941748892595478884}
   playerFeet: {fileID: 2941748893265320229}
+  hasEnteredDoor: 0
+  isDead: 0
   speed: 8
   jumpVelocity: 19
   fallMultiplier: 5
   coyoteTime: 0.15
+  coyoteTimeCounter: 0
   jumpBufferTime: 0.15
+  jumpBufferCounter: 0
 --- !u!114 &2792813025034923374
 MonoBehaviour:
   m_ObjectHideFlags: 0

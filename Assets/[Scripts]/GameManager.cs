@@ -19,18 +19,10 @@ public class GameManager : MonoBehaviour
     public int character1Deaths;
     public int character2Deaths;
 
-    public TextMeshProUGUI character1DeathsText;
-    public TextMeshProUGUI character2DeathsText;
-    public TextMeshProUGUI timerText;
     public float timer;
 
     public int numCharactersBeatenLevel = 0;
     private bool hasRun = false;
-
-    public GameObject characterPortraitImage;
-    public Sprite character1Portrait;
-    public Sprite character2Portrait;
-
 
     private void Awake()
     {
@@ -77,10 +69,8 @@ public class GameManager : MonoBehaviour
         }
 
         timer = timer += Time.deltaTime;
-        UpdateTimer(timer);
+       
 
-        character1DeathsText.text = "Character 1 Deaths: " + character1Deaths.ToString();
-        character2DeathsText.text = "Character 2 Deaths: " + character2Deaths.ToString();
 
         
         if (numCharactersBeatenLevel >= 2 && hasRun == false)
@@ -91,13 +81,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void UpdateTimer(float currentTime)
-    {
-        float minutes = Mathf.FloorToInt(currentTime / 60); 
-        float seconds = Mathf.FloorToInt(currentTime % 60);
-
-        timerText.text = string.Format("{0:00} : {1:00}", minutes, seconds);
-    }
+    
 
     public void SwitchCharacter()
     {
@@ -105,13 +89,13 @@ public class GameManager : MonoBehaviour
         Debug.Log("Switch");
         if (currentCharacter == 1)
         {
-            characterPortraitImage.GetComponent<Image>().sprite = character2Portrait;
+            
             currentCharacter = 2;
             Events.onSwitch.Invoke(currentCharacter);
         }
         else if (currentCharacter == 2)
         {
-            characterPortraitImage.GetComponent<Image>().sprite = character1Portrait;
+            
             currentCharacter = 1;
             Events.onSwitch.Invoke(currentCharacter);
         }

@@ -49,11 +49,5 @@ MonoBehaviour:
   currentCharacter: 0
   character1Deaths: 0
   character2Deaths: 0
-  character1DeathsText: {fileID: 0}
-  character2DeathsText: {fileID: 0}
-  timerText: {fileID: 0}
   timer: 0
   numCharactersBeatenLevel: 0
-  characterPortraitImage: {fileID: 0}
-  character1Portrait: {fileID: 21300000, guid: c1f475f0ab057254085ca9a523e28291, type: 3}
-  character2Portrait: {fileID: 21300000, guid: adc225b48ae2a314f8d7ba0a1425b4e0, type: 3}

@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8698059408568988753}
   - component: {fileID: 8698059408568988755}
   - component: {fileID: 8698059408568988756}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: pc
-  m_TagString: Interactable
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,6 +124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19ca37af9d845d04cb260509efdc8536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pcIndex: 2
+  pcIndex: 1
   isActive: 0
   pulseTimer: 3

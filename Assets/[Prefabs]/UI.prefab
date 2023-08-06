@@ -357,6 +357,7 @@ GameObject:
   - component: {fileID: 7866430534395012458}
   - component: {fileID: 7866430534395012460}
   - component: {fileID: 7866430534395012459}
+  - component: {fileID: 1160947998}
   m_Layer: 5
   m_Name: Game UI
   m_TagString: Untagged
@@ -427,6 +428,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1160947998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7866430534395012457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646479ec5f96d1b44baca38dcbdf3054, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character1DeathsText: {fileID: 7866430534503782388}
+  character2DeathsText: {fileID: 7866430535249266462}
+  timerText: {fileID: 903492361}
+  characterPortraitImage: {fileID: 7866430534563371356}
+  character1Portrait: {fileID: 21300000, guid: c1f475f0ab057254085ca9a523e28291, type: 3}
+  character2Portrait: {fileID: 21300000, guid: adc225b48ae2a314f8d7ba0a1425b4e0, type: 3}
 --- !u!1 &7866430534473982893
 GameObject:
   m_ObjectHideFlags: 0
