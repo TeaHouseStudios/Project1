@@ -30,9 +30,9 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float jumpVelocity;
     [SerializeField] private float fallMultiplier = 2f;
     [SerializeField] private float coyoteTime = 0.15f;
-    private float coyoteTimeCounter;
+    [SerializeField] private float coyoteTimeCounter;
     [SerializeField] private float jumpBufferTime = 0.15f;
-    private float jumpBufferCounter;
+    [SerializeField] private float jumpBufferCounter;
     Vector2 vecGravity;
 
 
@@ -118,7 +118,7 @@ public class CharacterMovement : MonoBehaviour
 
             if (rb.velocity.y < 0)
             {
-                ChangeState(CharacterState.isFalling);
+                
                 rb.velocity -= vecGravity * fallMultiplier * Time.deltaTime;
             }
         }
@@ -128,6 +128,7 @@ public class CharacterMovement : MonoBehaviour
 
     void Jump()
     {
+        
         jumpBufferCounter = 0f;
         coyoteTimeCounter = 0f;
         rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);
@@ -145,15 +146,21 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-    }
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
         if (collision.gameObject.CompareTag("Ground") && collision.otherCollider == playerFeet)
         {
             //LANDING
             ChangeState(CharacterState.isGrounded);
         }
     }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground") && collision.otherCollider == playerFeet && currentState != CharacterState.isJumping)
+        {
+            
+            ChangeState(CharacterState.isFalling);
+        }
+    }
+
+
 }
