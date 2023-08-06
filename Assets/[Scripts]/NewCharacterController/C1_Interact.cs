@@ -24,9 +24,6 @@ public class C1_Interact : MonoBehaviour
             pc = hit.collider.gameObject;
             if (Input.GetKeyDown(KeyCode.E) && GameManager.Instance.currentCharacter == 1)
             {
-                Debug.Log("INTERACTED");
-                //HANDLE PC INPUT
-                //Debug.Log("PC ACTIVATED");
                 pc.GetComponent<PC>().Activate();
             }
 

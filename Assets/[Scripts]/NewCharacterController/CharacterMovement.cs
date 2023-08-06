@@ -111,14 +111,14 @@ public class CharacterMovement : MonoBehaviour
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
             //jump
-            if (coyoteTimeCounter > 0f && jumpBufferCounter > 0)
+            if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f)
             {
                 Jump();
             }
 
             if (rb.velocity.y < 0)
             {
-
+                ChangeState(CharacterState.isFalling);
                 rb.velocity -= vecGravity * fallMultiplier * Time.deltaTime;
             }
         }
@@ -144,6 +144,11 @@ public class CharacterMovement : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground") && collision.otherCollider == playerFeet)
         {
