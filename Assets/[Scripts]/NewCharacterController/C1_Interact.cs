@@ -19,7 +19,7 @@ public class C1_Interact : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(interactDetect.position, Vector2.right * transform.localScale, rayDistance);
         GameObject pc;
-        if (hit.collider != null && hit.collider.tag == "Interactable")
+        if (hit.collider != null && hit.collider.GetComponent<PC>() != null)
         {
             pc = hit.collider.gameObject;
             if (Input.GetKeyDown(KeyCode.E) && GameManager.Instance.currentCharacter == 1)
