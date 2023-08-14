@@ -18,16 +18,16 @@ public class BoomarangPlatform : MonoBehaviour
 
     public float speed = 2.0f;
 
-    Character1 character1;
-    Character2 character2;
+    CharacterMovement character1;
+    CharacterMovement character2;
 
     Rigidbody2D rb;
     Vector3 moveDirection;
     
     private void Awake()
     {
-        character1 = GameObject.FindGameObjectWithTag("Character1").GetComponent<Character1>();
-        character2 = GameObject.FindGameObjectWithTag("Character2").GetComponent<Character2>();
+        character1 = GameObject.FindGameObjectWithTag("Character1").GetComponent<CharacterMovement>();
+        character2 = GameObject.FindGameObjectWithTag("Character2").GetComponent<CharacterMovement>();
         rb = GetComponent<Rigidbody2D>();
     }
 

@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 2941748893265320229}
   m_Layer: 0
   m_Name: Feet
-  m_TagString: Untagged
+  m_TagString: Character1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -259,6 +259,8 @@ MonoBehaviour:
   hasEnteredDoor: 0
   isDead: 0
   speed: 8
+  isOnPlatform: 0
+  platformRB: {fileID: 0}
   jumpVelocity: 19
   fallMultiplier: 5
   coyoteTime: 0.15

@@ -243,6 +243,8 @@ MonoBehaviour:
   hasEnteredDoor: 0
   isDead: 0
   speed: 8
+  isOnPlatform: 0
+  platformRB: {fileID: 0}
   jumpVelocity: 19
   fallMultiplier: 5
   coyoteTime: 0.15
@@ -277,7 +279,7 @@ GameObject:
   - component: {fileID: 7822252105102621401}
   m_Layer: 0
   m_Name: Feet
-  m_TagString: Untagged
+  m_TagString: Character2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.TextCore.Text;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public class CharacterMovement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float speed = 5;
     bool facingRight = true;
+    public bool isOnPlatform;
+    public Rigidbody2D platformRB;
+    private float horizontal;
 
 
     [Header("Jump")]
@@ -56,7 +60,20 @@ public class CharacterMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+        float targetSpeed = horizontal * speed;
+        //animator.SetFloat("Speed", Mathf.Abs(targetSpeed));
+
+        if (isOnPlatform)
+        {
+            rb.velocity = new Vector2(targetSpeed + platformRB.velocity.x, rb.velocity.y);
+        }
+        //NOT ON PLATFORM
+        else
+        {
+            //rb.velocity = new Vector2(horizontal *  speed, rb.velocity.y);
+        }
+
+
     }
 
     private void ChangeState(CharacterState newState)
@@ -77,7 +94,7 @@ public class CharacterMovement : MonoBehaviour
     {
         if (characterIndex == GameManager.Instance.currentCharacter)
         {
-            float horizontal = Input.GetAxisRaw("Horizontal");
+            horizontal = Input.GetAxisRaw("Horizontal");
 
             //CHECK FOR FLIPPING CHARACTER
             if (currentState != CharacterState.isDead)
