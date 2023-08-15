@@ -30,7 +30,7 @@ public class CharacterMovement : MonoBehaviour
     bool facingRight = true;
     public bool isOnPlatform;
     public Rigidbody2D platformRB;
-    private float horizontal;
+    public float horizontal;
 
 
     [Header("Jump")]
@@ -54,6 +54,10 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (characterIndex != GameManager.Instance.currentCharacter)
+        {
+            horizontal = 0;
+        }
         Movement();
         Animation();
     }
@@ -70,7 +74,7 @@ public class CharacterMovement : MonoBehaviour
         //NOT ON PLATFORM
         else
         {
-            //rb.velocity = new Vector2(horizontal *  speed, rb.velocity.y);
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         }
 
 
