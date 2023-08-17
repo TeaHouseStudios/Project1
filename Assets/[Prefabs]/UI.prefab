@@ -445,7 +445,7 @@ MonoBehaviour:
   timerText: {fileID: 903492361}
   characterPortraitImage: {fileID: 7866430534563371356}
   character1Portrait: {fileID: 21300000, guid: c1f475f0ab057254085ca9a523e28291, type: 3}
-  character2Portrait: {fileID: 21300000, guid: adc225b48ae2a314f8d7ba0a1425b4e0, type: 3}
+  character2Portrait: {fileID: 21300000, guid: 9f9b77cee3cb61d46aaad60704c4dc6a, type: 3}
 --- !u!1 &7866430534473982893
 GameObject:
   m_ObjectHideFlags: 0
