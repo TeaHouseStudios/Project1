@@ -22,6 +22,7 @@ public class CharacterMovement : MonoBehaviour
     public Animator animator;
     public CapsuleCollider2D playerBody;
     public CapsuleCollider2D playerFeet;
+    public AudioSource footstepsSound;
     public bool hasEnteredDoor = false;
     public bool isDead = false;
 
@@ -144,6 +145,16 @@ public class CharacterMovement : MonoBehaviour
             {
                 
                 rb.velocity -= vecGravity * fallMultiplier * Time.deltaTime;
+            }
+
+            //FOOTSTEP AUDIO
+            if (horizontal != 0 && currentState == CharacterState.isGrounded)
+            {
+                footstepsSound.enabled = true;
+            }
+            else
+            {
+                footstepsSound.enabled = false;
             }
         }
         
