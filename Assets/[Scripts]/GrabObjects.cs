@@ -25,6 +25,7 @@ public class GrabObjects : MonoBehaviour
         GameObject pickup;
         if (hit.collider != null && hit.collider.GetComponent<Box>() != null)
         {
+            //pickup = box in this case
             pickup = hit.collider.gameObject;
             if (Input.GetKeyDown(KeyCode.E) && !carryingBox && GameManager.Instance.currentCharacter == 2)
             {
@@ -32,7 +33,7 @@ public class GrabObjects : MonoBehaviour
                 pickup.transform.parent = boxHolder;
                 pickup.transform.position = boxHolder.position;
                 pickup.GetComponent<Rigidbody2D>().isKinematic = true;
-               
+                //pickup.GetComponent<BoxCollider2D>().enabled = false;
             }
 
             else if (Input.GetKeyDown(KeyCode.E) && carryingBox && GameManager.Instance.currentCharacter == 2)
@@ -40,6 +41,7 @@ public class GrabObjects : MonoBehaviour
                 carryingBox = false;
                 pickup.transform.parent = null;
                 pickup.GetComponent<Rigidbody2D>().isKinematic = false;
+                //pickup.GetComponent<BoxCollider2D>().enabled = true;
 
             }
 
