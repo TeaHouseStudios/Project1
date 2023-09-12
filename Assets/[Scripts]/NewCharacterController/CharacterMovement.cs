@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.TextCore.Text;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class CharacterMovement : MonoBehaviour
 {
