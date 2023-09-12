@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.TextCore.Text;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -28,10 +27,12 @@ public class CharacterMovement : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField] private float speed = 5;
+    public float maxSpeed = 10f;
     bool facingRight = true;
     public bool isOnPlatform;
     public Rigidbody2D platformRB;
     public float horizontal;
+    public float airControlMultiplier = 0.2f;
 
 
     [Header("Jump")]
@@ -66,19 +67,36 @@ public class CharacterMovement : MonoBehaviour
     private void FixedUpdate()
     {
         float targetSpeed = horizontal * speed;
-        //animator.SetFloat("Speed", Mathf.Abs(targetSpeed));
 
         if (isOnPlatform)
         {
-            rb.velocity = new Vector2(targetSpeed + platformRB.velocity.x, rb.velocity.y);
+            if (currentState == CharacterState.isGrounded)
+            {
+                rb.velocity = new Vector2(targetSpeed + platformRB.velocity.x, rb.velocity.y);
+            }
+            else
+            {
+                // Using a lerp for a smoother transition while in air
+                float velocityX = Mathf.Lerp(rb.velocity.x, targetSpeed + platformRB.velocity.x, 0.1f);
+                rb.velocity = new Vector2(velocityX, rb.velocity.y);
+            }
         }
-        //NOT ON PLATFORM
         else
         {
-            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+            if (currentState == CharacterState.isGrounded)
+            {
+                rb.velocity = new Vector2(targetSpeed, rb.velocity.y);
+            }
+            else
+            {
+                // Using a lerp for a smoother transition while in air
+                float velocityX = Mathf.Lerp(rb.velocity.x, targetSpeed, 0.1f);
+                rb.velocity = new Vector2(velocityX, rb.velocity.y);
+            }
         }
 
-
+        // Clamp the velocity to a maximum value
+        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed), rb.velocity.y);
     }
 
     private void ChangeState(CharacterState newState)
@@ -133,7 +151,7 @@ public class CharacterMovement : MonoBehaviour
             }
 
             //MOVEMENT AND JUMPING
-            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+            //rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
             //jump
             if (coyoteTimeCounter > 0f && jumpBufferCounter > 0f)
@@ -141,10 +159,15 @@ public class CharacterMovement : MonoBehaviour
                 Jump();
             }
 
+            // Allow for a bit of air control
+            if (rb.velocity.y != 0)
+            {
+                rb.velocity = new Vector2(rb.velocity.x + horizontal * airControlMultiplier, rb.velocity.y);
+            }
+
             if (rb.velocity.y < 0)
             {
-                
-                rb.velocity -= vecGravity * fallMultiplier * Time.deltaTime;
+                rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
             }
 
             //FOOTSTEP AUDIO
