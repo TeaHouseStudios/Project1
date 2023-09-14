@@ -116,6 +116,11 @@ public class BoomarangPlatform : MonoBehaviour
             character2.isOnPlatform = true;
             character2.platformRB = rb;
         }
+        if (collision.gameObject.GetComponent<Box>())
+        {
+            collision.gameObject.GetComponent<Box>().isOnPlatform = true;
+            collision.gameObject.GetComponent<Box>().platformRB = rb;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -127,6 +132,10 @@ public class BoomarangPlatform : MonoBehaviour
         if (collision.CompareTag("Character2"))
         {
             character2.isOnPlatform = false;
+        }
+        if (collision.gameObject.GetComponent<Box>())
+        {
+            collision.gameObject.GetComponent<Box>().isOnPlatform = false;
         }
     }
 
