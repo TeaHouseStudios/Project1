@@ -18,14 +18,13 @@ public class Box : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Update()
     {
-        canBeDropped = false;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        canBeDropped = true;
+        if (transform.parent != null)
+        {
+            rb.velocity = Vector2.zero;
+        }
+        
     }
 
     private void FixedUpdate()
@@ -37,5 +36,15 @@ public class Box : MonoBehaviour
             
             
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        canBeDropped = false;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        canBeDropped = true;
     }
 }

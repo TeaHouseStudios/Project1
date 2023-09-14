@@ -36,6 +36,7 @@ public class GrabObjects : MonoBehaviour
                     carryingBox = true;
                     pickup.transform.parent = boxHolder;
                     pickup.transform.position = boxHolder.position;
+                    //pickup.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                     pickup.GetComponent<Rigidbody2D>().isKinematic = true;
                     pickup.GetComponent<BoxCollider2D>().isTrigger = true;
                 }
