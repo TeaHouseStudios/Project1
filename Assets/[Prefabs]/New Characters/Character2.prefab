@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 774901827}
   - component: {fileID: 774901828}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 71261049986709213}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RayPos
   m_TagString: Untagged
   m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
@@ -124,7 +124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7246613755448645377}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BoxHolder
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -156,7 +156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7822252103635976857}
   - component: {fileID: 7822252103635976856}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 7822252104265216733}
   - component: {fileID: 4265861086107364811}
   - component: {fileID: 51274516}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Character2
   m_TagString: Character2
   m_Icon: {fileID: 0}
@@ -464,7 +464,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7822252105102621398}
   - component: {fileID: 7822252105102621401}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Feet
   m_TagString: Character2
   m_Icon: {fileID: 0}

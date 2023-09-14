@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 145607435}
   - component: {fileID: 145607436}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2792813026085576124}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RaycastPos
   m_TagString: Untagged
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
@@ -125,7 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2941748892595478885}
   - component: {fileID: 2941748892595478884}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2941748893265320234}
   - component: {fileID: 2941748893265320229}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Feet
   m_TagString: Character1
   m_Icon: {fileID: 0}
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 2941748894164095265}
   - component: {fileID: 2792813025034923374}
   - component: {fileID: 547814402}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Character1
   m_TagString: Character1
   m_Icon: {fileID: 0}
