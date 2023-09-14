@@ -69,10 +69,14 @@ public class GameManager : MonoBehaviour
         }
 
         timer = timer += Time.deltaTime;
-       
+
+        if (Input.GetKeyDown(KeyCode.R) && numCharactersBeatenLevel != 2)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        }
 
 
-        
         if (numCharactersBeatenLevel >= 2 && hasRun == false)
         {
             EndLevel();
