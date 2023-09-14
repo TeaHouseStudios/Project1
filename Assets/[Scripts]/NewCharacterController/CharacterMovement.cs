@@ -24,6 +24,7 @@ public class CharacterMovement : MonoBehaviour
     public AudioSource footstepsSound;
     public bool hasEnteredDoor = false;
     public bool isDead = false;
+    public GameObject activeIndicator;
 
     [Header("Movement")]
     [SerializeField] private float speed = 5;
@@ -53,6 +54,16 @@ public class CharacterMovement : MonoBehaviour
         vecGravity = new Vector2 (0, -Physics2D.gravity.y);
     }
 
+    private void OnEnable()
+    {
+        Events.onSwitch.AddListener(OnSwitch);
+    }
+
+    private void OnDisable()
+    {
+        Events.onSwitch.RemoveListener(OnSwitch);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -62,6 +73,18 @@ public class CharacterMovement : MonoBehaviour
         }
         Movement();
         Animation();
+    }
+
+    void OnSwitch(int activeChar)
+    {
+        if (activeChar == characterIndex)
+        {
+            activeIndicator.gameObject.SetActive(true);
+        }
+        else
+        {
+            activeIndicator.gameObject.SetActive(false);
+        }
     }
 
     private void FixedUpdate()
