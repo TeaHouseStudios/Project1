@@ -49,6 +49,7 @@ public class CharacterMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         currentState = CharacterState.isGrounded;
         vecGravity = new Vector2 (0, -Physics2D.gravity.y);
@@ -90,6 +91,7 @@ public class CharacterMovement : MonoBehaviour
     private void FixedUpdate()
     {
         float targetSpeed = horizontal * speed;
+        animator.SetFloat("Speed", Mathf.Abs(targetSpeed));
 
         if (isOnPlatform)
         {
@@ -203,8 +205,18 @@ public class CharacterMovement : MonoBehaviour
                 footstepsSound.enabled = false;
             }
         }
-        
-        
+
+        //CHECK FOR JUMPING FOR ANIMATION
+        if (rb.velocity.y > 0.01)
+        {
+            animator.SetBool("IsJumping", true);
+        }
+        else
+        {
+            animator.SetBool("IsJumping", false);
+        }
+
+
     }
 
     void Jump()
