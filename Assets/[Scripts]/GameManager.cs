@@ -124,8 +124,16 @@ public class GameManager : MonoBehaviour
 
     public void EndLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        Events.onLevelEnd.Invoke(CalculateScore());
         //Play Fade out animation!!!
         //GO TO NEXT LEVEL
+    }
+    public float CalculateScore()
+    {
+        float score = timer + 5 * (character1Deaths + character2Deaths);
+        score = Mathf.Floor(score);
+
+        return score;
     }
 }

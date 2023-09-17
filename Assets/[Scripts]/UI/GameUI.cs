@@ -19,6 +19,20 @@ public class GameUI : MonoBehaviour
         
     }
 
+    private void OnEnable()
+    {
+        Events.onLevelEnd.AddListener(DisableGameUI);
+    }
+    private void OnDisable()
+    {
+        Events.onLevelEnd.RemoveListener(DisableGameUI);
+    }
+
+    public void DisableGameUI(float score)
+    {
+        this.gameObject.SetActive(false);
+    }
+
     // Update is called once per frame
     void Update()
     {

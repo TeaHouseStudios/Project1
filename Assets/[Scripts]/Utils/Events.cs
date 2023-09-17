@@ -13,6 +13,8 @@ public static class Events
     public static readonly Evt<int> onPcDeactivated = new Evt<int>();
 
     public static readonly Evt<int> onSwitch = new Evt<int>();
+
+    public static readonly Evt<float> onLevelEnd = new Evt<float>(); 
 }
 
 public class Evt
