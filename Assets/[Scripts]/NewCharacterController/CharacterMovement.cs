@@ -221,7 +221,7 @@ public class CharacterMovement : MonoBehaviour
 
     void Jump()
     {
-        
+        SoundManager.Instance.Play("jump");
         jumpBufferCounter = 0f;
         coyoteTimeCounter = 0f;
         rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);

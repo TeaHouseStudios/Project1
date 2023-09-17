@@ -61,3 +61,8 @@ MonoBehaviour:
     volume: 0.187
     loop: 0
     source: {fileID: 0}
+  - name: jump
+    clip: {fileID: 8300000, guid: ef8a4c0d8daebcb4b81df3523d9a3667, type: 3}
+    volume: 0.187
+    loop: 0
+    source: {fileID: 0}
