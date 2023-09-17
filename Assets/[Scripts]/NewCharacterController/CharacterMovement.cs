@@ -207,7 +207,7 @@ public class CharacterMovement : MonoBehaviour
         }
 
         //CHECK FOR JUMPING FOR ANIMATION
-        if (rb.velocity.y > 0.01)
+        if (rb.velocity.y > 0.01 && currentState != CharacterState.isGrounded)
         {
             animator.SetBool("IsJumping", true);
         }
