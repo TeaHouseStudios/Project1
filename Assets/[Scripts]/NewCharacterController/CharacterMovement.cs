@@ -205,6 +205,10 @@ public class CharacterMovement : MonoBehaviour
                 footstepsSound.enabled = false;
             }
         }
+        if (rb.velocity.y == 0 && currentState != CharacterState.isGrounded)
+        {
+            currentState = CharacterState.isGrounded;
+        }
 
         //CHECK FOR JUMPING FOR ANIMATION
         if (rb.velocity.y > 0.01 && currentState != CharacterState.isGrounded)
