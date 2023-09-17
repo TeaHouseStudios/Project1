@@ -46,11 +46,13 @@ public class Receiver : MonoBehaviour
 
     public void Activate()
     {
+        SoundManager.Instance.Play("receiverActivate");
         Events.onReceiverActivated.Invoke(recIndex);
     }
 
     public void Deactivate()
     {
+        SoundManager.Instance.Play("receiverDeactivate");
         Events.onReceiverDeactivated.Invoke(recIndex);
     }
 }

@@ -23,6 +23,7 @@ public class PC : MonoBehaviour
     {
         Debug.Log("PC ACTIVATED");
         Events.onPcActivated.Invoke(pcIndex);
+        SoundManager.Instance.Play("pcActivate");
         StartCoroutine(PcTimer());
     }
 
