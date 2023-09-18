@@ -267,7 +267,7 @@ public class CharacterMovement : MonoBehaviour
             ChangeState(CharacterState.isGrounded);
         }
 
-        if (collision.gameObject.tag == "Hazard")
+        if (collision.gameObject.CompareTag("Hazard"))
         {
 
             KillCharacter();
