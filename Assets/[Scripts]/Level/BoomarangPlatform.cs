@@ -106,12 +106,12 @@ public class BoomarangPlatform : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Character1"))
+        if (collision.CompareTag("Character1Feet"))
         {
             character1.isOnPlatform = true;
             character1.platformRB = rb;
         }
-        if (collision.CompareTag("Character2"))
+        if (collision.CompareTag("Character2Feet"))
         {
             character2.isOnPlatform = true;
             character2.platformRB = rb;
@@ -125,11 +125,11 @@ public class BoomarangPlatform : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Character1"))
+        if (collision.CompareTag("Character1Feet"))
         {
             character1.isOnPlatform = false;
         }
-        if (collision.CompareTag("Character2"))
+        if (collision.CompareTag("Character2Feet"))
         {
             character2.isOnPlatform = false;
         }

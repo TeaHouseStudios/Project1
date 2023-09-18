@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     private GameObject character1;
     private GameObject character2;
+    public Rigidbody2D character1Rigidbody;
+    public Rigidbody2D character2Rigidbody;
 
     public Vector3 c1RespawnPoint;
     public Vector3 c2RespawnPoint;
@@ -46,6 +48,13 @@ public class GameManager : MonoBehaviour
         timer = 0.0f;
         character1 = GameObject.FindGameObjectWithTag("Character1");
         character2 = GameObject.FindGameObjectWithTag("Character2");
+        character1Rigidbody = character1.GetComponent<Rigidbody2D>();
+        if (character1Rigidbody == null)
+        {
+            Debug.LogError("character1 does not have a Rigidbody2D component attached.");
+            return;
+        }
+        character2Rigidbody = character2.GetComponent<Rigidbody2D>();
 
         character1Deaths = 0;
         character2Deaths = 0;
@@ -108,17 +117,48 @@ public class GameManager : MonoBehaviour
     public void RespawnCharacter(int characterIndex)
     {
         
+
         if (characterIndex == 1)
         {
+            if (character1Rigidbody == null)
+            {
+                Debug.LogError("character1 Rigidbody2D is null");
+                return;
+            }
+
+            //Debug.Log("Before setting isKinematic to true");
+            character1Rigidbody.isKinematic = true;
+
+            //Debug.Log("Before setting position");
             character1.transform.position = c1RespawnPoint;
+
+            //Debug.Log("Before setting isKinematic to false");
+            character1Rigidbody.isKinematic = false;
+
+            //Debug.Log("Before setting isDead to false");
             character1.GetComponent<CharacterMovement>().isDead = false;
-            
+
         }
         else
         {
+            if (character2Rigidbody == null)
+            {
+                Debug.LogError("character1 Rigidbody2D is null");
+                return;
+            }
+
+            //Debug.Log("Before setting isKinematic to true");
+            character2Rigidbody.isKinematic = true;
+
+            //Debug.Log("Before setting position");
             character2.transform.position = c2RespawnPoint;
+
+            //Debug.Log("Before setting isKinematic to false");
+            character2Rigidbody.isKinematic = false;
+
+            //Debug.Log("Before setting isDead to false");
             character2.GetComponent<CharacterMovement>().isDead = false;
-            
+
         }
     }
 

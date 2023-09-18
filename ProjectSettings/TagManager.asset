@@ -11,6 +11,8 @@ TagManager:
   - Pickup
   - Interactable
   - Ground
+  - Character1Feet
+  - Character2Feet
   layers:
   - Default
   - TransparentFX

@@ -245,17 +245,24 @@ public class CharacterMovement : MonoBehaviour
     {
         if (!isDead)
         {
+            Debug.Log("Character is not dead yet");
             isDead = true;
             this.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
             if (characterIndex == 1)
             {
+                Debug.Log("Incrementing character1Deaths");
                 GameManager.Instance.character1Deaths++;
             }
             else
             {
+                Debug.Log("Incrementing character2Deaths");
                 GameManager.Instance.character2Deaths++;
             }
             GameManager.Instance.RespawnCharacter(characterIndex);
+        }
+        else
+        {
+            Debug.Log("Character is already dead");
         }
     }
 
