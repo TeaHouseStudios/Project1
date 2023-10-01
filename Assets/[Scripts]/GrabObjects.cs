@@ -23,40 +23,45 @@ public class GrabObjects : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit2D hit = Physics2D.Raycast(grabDetect.position, Vector2.right * transform.localScale, rayDistance);
-        
+        if (gameObject.GetComponent<CharacterMovement>().characterIndex == GameManager.Instance.currentCharacter)
+            {
 
-        if (!carryingBox)
-        {
-            if (hit.collider != null && hit.collider.GetComponent<Box>() != null)
+            RaycastHit2D hit = Physics2D.Raycast(grabDetect.position, Vector2.right * transform.localScale, rayDistance);
+
+
+            if (!carryingBox)
             {
-                pickup = hit.collider.gameObject;
-                if (Input.GetKeyDown(KeyCode.E) && !carryingBox && GameManager.Instance.currentCharacter == 2)
+                if (hit.collider != null && hit.collider.GetComponent<Box>() != null)
                 {
-                    carryingBox = true;
-                    pickup.transform.parent = boxHolder;
-                    pickup.transform.position = boxHolder.position;
-                    //pickup.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                    pickup.GetComponent<Rigidbody2D>().isKinematic = true;
-                    pickup.GetComponent<BoxCollider2D>().isTrigger = true;
+                    pickup = hit.collider.gameObject;
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        carryingBox = true;
+                        pickup.transform.parent = boxHolder;
+                        pickup.transform.position = boxHolder.position;
+                        //pickup.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                        pickup.GetComponent<Rigidbody2D>().isKinematic = true;
+                        pickup.GetComponent<BoxCollider2D>().isTrigger = true;
+                    }
                 }
             }
-        }
-        else if (carryingBox)
-        {
-            if (Input.GetKeyDown(KeyCode.E) && GameManager.Instance.currentCharacter == 2)
+            else if (carryingBox)
             {
-                Debug.Log(pickup);
-                
-                if (pickup != null && pickup.GetComponent<Box>().canBeDropped) // Check for null before accessing pickup
+                if (Input.GetKeyDown(KeyCode.E))
                 {
-                    carryingBox = false;
-                    Debug.Log("DROP");
-                    pickup.transform.parent = null;
-                    pickup.GetComponent<Rigidbody2D>().isKinematic = false;
-                    pickup.GetComponent<BoxCollider2D>().isTrigger = false;
+                    Debug.Log(pickup);
+
+                    if (pickup != null && pickup.GetComponent<Box>().canBeDropped) // Check for null before accessing pickup
+                    {
+                        carryingBox = false;
+                        Debug.Log("DROP");
+                        pickup.transform.parent = null;
+                        pickup.GetComponent<Rigidbody2D>().isKinematic = false;
+                        pickup.GetComponent<BoxCollider2D>().isTrigger = false;
+                    }
                 }
             }
+
         }
 
     }

@@ -9,22 +9,25 @@ public class C1_Interact : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.currentCharacter == 1)
-        {
-            InteractRaycast();
-        }
+        InteractRaycast();
     }
 
     public void InteractRaycast()
     {
-        RaycastHit2D hit = Physics2D.Raycast(interactDetect.position, Vector2.right * transform.localScale, rayDistance);
-        GameObject pc;
-        if (hit.collider != null && hit.collider.GetComponent<PC>() != null)
+        if (gameObject.GetComponent<CharacterMovement>().characterIndex == GameManager.Instance.currentCharacter)
         {
-            pc = hit.collider.gameObject;
-            if (Input.GetKeyDown(KeyCode.E) && GameManager.Instance.currentCharacter == 1)
+
+            RaycastHit2D hit = Physics2D.Raycast(interactDetect.position, Vector2.right * transform.localScale, rayDistance);
+
+            GameObject pc;
+            if (hit.collider != null && hit.collider.GetComponent<PC>() != null)
             {
-                pc.GetComponent<PC>().Activate();
+                pc = hit.collider.gameObject;
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    pc.GetComponent<PC>().Activate();
+                }
+
             }
 
         }
