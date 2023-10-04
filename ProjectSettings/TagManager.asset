@@ -13,6 +13,7 @@ TagManager:
   - Ground
   - Character1Feet
   - Character2Feet
+  - Vent
   layers:
   - Default
   - TransparentFX
