@@ -15,6 +15,8 @@ public class C1_AimAndThrow : MonoBehaviour
 
     public int numOfPoints;
 
+    public GameObject thrownTeleporter = null;
+
     private void Start()
     {
         points = new GameObject[numOfPoints];
@@ -47,12 +49,21 @@ public class C1_AimAndThrow : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
                         Shoot();
+                        ClearPointer();
                     }
                 }
 
                 if (Input.GetKeyUp(KeyCode.Mouse1))
                 {
                     ClearPointer();
+                }
+            }
+
+            else if (tpIsThrown == true)
+            {
+                if (Input.GetKeyDown(KeyCode.F) && thrownTeleporter != null)
+                {
+                    TeleportCharacter();
                 }
             }
         }
@@ -79,6 +90,33 @@ public class C1_AimAndThrow : MonoBehaviour
         GameObject tpIns = Instantiate(tpPrefab, transform.position, transform.rotation);
 
         tpIns.GetComponent<Rigidbody2D>().velocity = transform.right * launchForce;
+
+        //Events.onTeleportThrown.Invoke(tpIns);
+        tpIsThrown = true;
+        thrownTeleporter = tpIns;
+    }
+
+    void TeleportCharacter()
+    {
+        GameObject character = gameObject.transform.parent.gameObject;
+
+        if (character != null && thrownTeleporter != null)
+        {
+            // Calculate the vertical offset from the character's center to its feet
+            float characterHalfHeight = character.GetComponent<SpriteRenderer>().bounds.extents.y;
+
+            // Calculate the new position
+            Vector3 beaconPosition = thrownTeleporter.transform.position;
+            Vector3 teleportPosition = new Vector3(beaconPosition.x, beaconPosition.y + characterHalfHeight, beaconPosition.z);
+
+            // Teleport the character
+            character.transform.position = teleportPosition;
+
+            // Cleanup
+            Destroy(thrownTeleporter);
+            thrownTeleporter = null;
+            tpIsThrown = false;
+        }
     }
 
     Vector2 PointPosition(float t)
