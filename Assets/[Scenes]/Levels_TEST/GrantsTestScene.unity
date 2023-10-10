@@ -1828,7 +1828,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c85285fc167c8b94eb2e91f33d887244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linkedVent: {fileID: 2047836082}
+  ventIndex: 2
+  exitVentIndex: 1
 --- !u!1 &617971631 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2941748894164095274, guid: 22fdeb90dbf58094baecccafe63204da, type: 3}
@@ -9719,7 +9720,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c85285fc167c8b94eb2e91f33d887244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linkedVent: {fileID: 514554697}
+  ventIndex: 1
+  exitVentIndex: 2
 --- !u!1001 &2941748893175511757
 PrefabInstance:
   m_ObjectHideFlags: 0

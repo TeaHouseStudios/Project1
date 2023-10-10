@@ -1,6 +1,3 @@
-// THIS DOES NOT WORK RIGHT NOW
-// TODO: MAKE THIS WORK WITH EVENTS
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +6,7 @@ public class PlayerVent : MonoBehaviour
 {
 
     bool charCanUseVents = false;
-    bool charInVentRange = false;
+    public bool charInVentRange = false;
 
     GameObject lastVentCollision;
 
@@ -36,34 +33,33 @@ public class PlayerVent : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q) && charCanUseVents && charInVentRange && (lastVentCollision != null))
         {
-            Events.onVentEnter.Invoke(this.gameObject, lastVentCollision.GetComponent<Vent>().ventIndex);
+            Events.onVentEnter.Invoke(this.gameObject, lastVentCollision.GetComponent<Vent>().exitVentIndex);
         }
 
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-
-        Debug.Log("Collision!");
-
-
-            if (collision.gameObject.CompareTag("Vent"))
-            {
-
-                Debug.Log("It's a vent!");
-
-                charInVentRange = true;
-
-                lastVentCollision = collision.gameObject;
     
-            }
-        
+    void OnTriggerExit2D(Collider2D collision)
+    {
+
+        if (collision.gameObject.CompareTag("Vent"))
+        {
+            charInVentRange = false;
+
+            Debug.Log("Just exited " + collision.gameObject);
+        }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        charInVentRange = false;
+        if (collision.gameObject.CompareTag("Vent"))
+        {
+            charInVentRange = true;
+
+            lastVentCollision = collision.gameObject;
+        }
     }
+
 
 
 
