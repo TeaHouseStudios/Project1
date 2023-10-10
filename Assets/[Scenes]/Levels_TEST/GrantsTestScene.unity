@@ -211,6 +211,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &85317447 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7822252104265216726, guid: 4b2d059c93884ec4199e9a995da2d5e8, type: 3}
+  m_PrefabInstance: {fileID: 7106426732492723626}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &85317456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85317447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c4ec7c539c11ab47bb59e701e79b9e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &161790375
 GameObject:
   m_ObjectHideFlags: 0
@@ -1708,6 +1725,7 @@ GameObject:
   - component: {fileID: 514554701}
   - component: {fileID: 514554700}
   - component: {fileID: 514554699}
+  - component: {fileID: 514554702}
   m_Layer: 0
   m_Name: Vent2
   m_TagString: Vent
@@ -1798,6 +1816,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &514554702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514554697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c85285fc167c8b94eb2e91f33d887244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedVent: {fileID: 2047836082}
+--- !u!1 &617971631 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2941748894164095274, guid: 22fdeb90dbf58094baecccafe63204da, type: 3}
+  m_PrefabInstance: {fileID: 2941748893175511757}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &617971640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617971631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c4ec7c539c11ab47bb59e701e79b9e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &710820590
 GameObject:
   m_ObjectHideFlags: 0
@@ -9568,6 +9616,7 @@ GameObject:
   - component: {fileID: 2047836086}
   - component: {fileID: 2047836085}
   - component: {fileID: 2047836084}
+  - component: {fileID: 2047836087}
   m_Layer: 0
   m_Name: Vent1
   m_TagString: Vent
@@ -9658,6 +9707,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2047836087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047836082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c85285fc167c8b94eb2e91f33d887244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linkedVent: {fileID: 514554697}
 --- !u!1001 &2941748893175511757
 PrefabInstance:
   m_ObjectHideFlags: 0
