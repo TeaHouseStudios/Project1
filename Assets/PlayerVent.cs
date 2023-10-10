@@ -62,7 +62,7 @@ public class PlayerVent : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        inRangeOfTP = false;
+        charInVentRange = false;
     }
 
 
