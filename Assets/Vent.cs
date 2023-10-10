@@ -10,14 +10,10 @@ public class Vent : MonoBehaviour
     public int ventIndex;
     public int exitVentIndex;
 
-    Events.
-
-    public void teleportToNext(GameObject player, int targetIndex))
+    public void teleportToNext(GameObject player, int targetIndex)
     {
 
 
-        Vector2 tpTarget = linkedVent.transform.position;
-
-        player.transform.position = tpTarget;
+        Debug.Log("Test");
     }
 }
