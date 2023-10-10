@@ -14,7 +14,9 @@ public static class Events
 
     public static readonly Evt<int> onSwitch = new Evt<int>();
 
-    public static readonly Evt<float> onLevelEnd = new Evt<float>(); 
+    public static readonly Evt<float> onLevelEnd = new Evt<float>();
+
+    public static readonly Evt<GameObject, int> onVentEnter = new Evt<GameObject, int>();
 }
 
 public class Evt
