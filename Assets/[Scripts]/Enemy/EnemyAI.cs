@@ -55,7 +55,9 @@ public class EnemyAI : MonoBehaviour
 
     void Flip()
     {
-        transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x)), transform.localScale.y);
+        Vector3 currentScale = this.gameObject.transform.localScale;
+        currentScale.x *= -1;
+        this.gameObject.transform.localScale = currentScale;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
