@@ -27,7 +27,7 @@ public class CharacterMovement : MonoBehaviour
     public GameObject activeIndicator;
 
     [Header("Movement")]
-    [SerializeField] private float speed = 5;
+    public float speed = 5f;
     public float maxSpeed = 10f;
     bool facingRight = true;
     public bool isOnPlatform;
@@ -37,7 +37,7 @@ public class CharacterMovement : MonoBehaviour
 
 
     [Header("Jump")]
-    [SerializeField] private float jumpVelocity;
+    public float jumpVelocity;
     [SerializeField] private float fallMultiplier = 2f;
     [SerializeField] private float coyoteTime = 0.15f;
     [SerializeField] private float coyoteTimeCounter;
