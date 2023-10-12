@@ -1864,6 +1864,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charInVentRange: 0
+--- !u!114 &617971649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617971631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 537d7e6bbac3d8a4f849adb9d5814f95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dartPrefab: {fileID: 3281915785967439101, guid: ac70c898bd82b254f9a08382d1013d7c, type: 3}
+  shootForce: 20
 --- !u!1 &710820590
 GameObject:
   m_ObjectHideFlags: 0
