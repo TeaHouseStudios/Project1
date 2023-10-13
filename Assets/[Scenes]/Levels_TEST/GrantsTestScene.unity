@@ -1877,7 +1877,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dartPrefab: {fileID: 3281915785967439101, guid: ac70c898bd82b254f9a08382d1013d7c, type: 3}
-  shootForce: 20
+  shootForce: 30
+  readyToFire: 1
 --- !u!1 &710820590
 GameObject:
   m_ObjectHideFlags: 0
