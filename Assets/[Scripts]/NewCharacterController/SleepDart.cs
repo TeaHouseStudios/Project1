@@ -18,7 +18,10 @@ public class SleepDart : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // check if collision has tag "enemy"
+        if (collision.gameObject.CompareTag("enemy"))
+        {
+            // induce sleeping state in enemy
+        }
 
         Destroy(this.gameObject);
     }
