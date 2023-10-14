@@ -1670,7 +1670,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &699434651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9442,6 +9442,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7822252103635976854, guid: 4b2d059c93884ec4199e9a995da2d5e8, type: 3}
+      propertyPath: m_TagString
+      value: Character2Body
+      objectReference: {fileID: 0}
     - target: {fileID: 7822252104265216726, guid: 4b2d059c93884ec4199e9a995da2d5e8, type: 3}
       propertyPath: m_Name
       value: Character2
@@ -9452,7 +9456,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7822252104265216730, guid: 4b2d059c93884ec4199e9a995da2d5e8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.44
+      value: -4.85
       objectReference: {fileID: 0}
     - target: {fileID: 7822252104265216730, guid: 4b2d059c93884ec4199e9a995da2d5e8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9505,6 +9509,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
+  viewDistance: 15
+  fovAngle: 90
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &9019182253070124474
 GameObject:
   m_ObjectHideFlags: 0
