@@ -24,6 +24,7 @@ public class CharacterMovement : MonoBehaviour
     public AudioSource footstepsSound;
     public bool hasEnteredDoor = false;
     public bool isDead = false;
+    public bool hasKey = false;
     public GameObject activeIndicator;
 
     [Header("Movement")]
@@ -292,19 +293,38 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Player hit a trigger!");
+
         if (collision.gameObject.tag == "Door" && !hasEnteredDoor)
         {
             Door door = collision.gameObject.GetComponent<Door>();
-            if (door.doorIndex == characterIndex)
+            if (door.doorIndex == characterIndex && hasKey)
             {
                 hasEnteredDoor = true;
                 door.Entered = true;
                 Debug.Log("DOOR");
-                gameObject.SetActive(false);
+                gameObject.SetActive(false);    
                 GameManager.Instance.SwitchCharacter();
                 GameManager.Instance.numCharactersBeatenLevel++;
                 
             }
+        }
+        
+        if (collision.gameObject.tag == "PlayerKey")
+        {
+            Debug.Log("This is the key!");
+
+            PlayerKey key = collision.gameObject.GetComponent<PlayerKey>();
+
+            print(key);
+
+            if (key.keyIndex == characterIndex)
+            {
+                Destroy(key.GetComponent<Collider2D>());
+                Destroy(key.GetComponent<SpriteRenderer>());
+                hasKey = true;
+            }
+
         }
     }
 
