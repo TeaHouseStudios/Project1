@@ -53,7 +53,7 @@ public class CharacterMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         currentState = CharacterState.isGrounded;
-        vecGravity = new Vector2 (0, -Physics2D.gravity.y);
+        vecGravity = new Vector2(0, -Physics2D.gravity.y);
     }
 
     private void OnEnable()
@@ -286,11 +286,10 @@ public class CharacterMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground") && collision.otherCollider == playerFeet && currentState != CharacterState.isJumping)
         {
-            
+
             ChangeState(CharacterState.isFalling);
         }
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Player hit a trigger!");
@@ -303,13 +302,13 @@ public class CharacterMovement : MonoBehaviour
                 hasEnteredDoor = true;
                 door.Entered = true;
                 Debug.Log("DOOR");
-                gameObject.SetActive(false);    
+                gameObject.SetActive(false);
                 GameManager.Instance.SwitchCharacter();
                 GameManager.Instance.numCharactersBeatenLevel++;
-                
+
             }
         }
-        
+
         if (collision.gameObject.tag == "PlayerKey")
         {
             Debug.Log("This is the key!");
@@ -326,7 +325,11 @@ public class CharacterMovement : MonoBehaviour
             }
 
         }
+
     }
 
-
 }
+
+
+
+
