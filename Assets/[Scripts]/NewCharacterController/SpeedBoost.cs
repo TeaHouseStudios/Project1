@@ -7,6 +7,8 @@ public class SpeedBoost : MonoBehaviour
 
     GameObject char2;
 
+    public bool canBoost = true;
+
     float newSpeed;
     float maxSpeed;
     float jumpSpeed;
@@ -25,9 +27,9 @@ public class SpeedBoost : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && canBoost)
         {
-            StartCoroutine(Order()); // pause 3 seconds
+            StartCoroutine(Boost()); // pause 3 seconds
         }
     }
 
@@ -60,8 +62,10 @@ public class SpeedBoost : MonoBehaviour
         Debug.Log("Current speed = " + newSpeed);
     }
 
-    IEnumerator Order()
+    IEnumerator Boost()
     {
+        canBoost = false;
+
         isBoosting = true; // toggle speedboost
 
         updateSpeed();
@@ -71,6 +75,10 @@ public class SpeedBoost : MonoBehaviour
         isBoosting = false;
 
         updateSpeed();
+
+        yield return new WaitForSeconds(10.0f); // cooldown period
+
+        canBoost = true;
 
     }
 }
