@@ -15,6 +15,7 @@ TagManager:
   - Character2Feet
   - Vent
   - PlayerKey
+  - Character1Body
   layers:
   - Default
   - TransparentFX

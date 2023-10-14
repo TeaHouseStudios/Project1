@@ -4,57 +4,50 @@ using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float viewDistance;
+    public float fovAngle;
+    public LayerMask playerLayer;
+    public LayerMask obstacleLayer;
+
+    private void Update()
     {
-        Mesh mesh = new Mesh();
-        GetComponent<MeshFilter>().mesh = mesh;
-
-        float fov = 90f;
-        Vector3 origin = Vector3.zero;
-        int rayCount = 25;
-        float angle = 0f;
-        float angleIncrease = fov/rayCount;
-        float viewDistance = 50f;
-
-        Vector3[] verticies = new Vector3[rayCount + 1 + 1];
-        Vector2[] uv = new Vector2[verticies.Length];
-        int[] triangles = new int[rayCount * 3];
-
-        verticies[0] = origin;
-
-        int vertexIndex = 1;
-        int triangleIndex = 0;
-        for (int i = 0; i <= rayCount; i++)
-        {
-            Vector3 vertex = origin + GetVectorFromAngle(angle) * viewDistance;
-            verticies[vertexIndex] = vertex;
-
-            if (i > 0)
-            {
-                triangles[triangleIndex + 0] = 0;
-                triangles[triangleIndex + 1] = vertexIndex - 1;
-                triangles[triangleIndex + 2] = vertexIndex;
-
-                triangleIndex += 3;
-            }
-            vertexIndex++;
-            angle -= angleIncrease;
-        }
-
-        mesh.vertices = verticies;
-        mesh.uv = uv;
-        mesh.triangles = triangles;
-
-        mesh.RecalculateBounds();
-
+        DetectPlayer();
     }
 
-    static Vector3 GetVectorFromAngle(float angle)
+    private void DetectPlayer()
     {
-        //angle = 0 -> 360
-        float angleRad = angle * (Mathf.PI / 180f);
-        return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
+        // Find player
+        GameObject character1 = GameObject.FindGameObjectWithTag("Character1");
+
+        // Get vector to player
+        Vector2 toCharacter1 = character1.transform.position - transform.position;
+
+        // Check if player is within FOV angle
+        if (Vector2.Angle(transform.up, toCharacter1) < fovAngle * 0.5f)
+        {
+            // Check if player is within view distance
+            if (toCharacter1.magnitude < viewDistance)
+            {
+                // Check for line of sight using raycasting
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, toCharacter1.normalized, viewDistance, playerLayer | obstacleLayer);
+
+                // Check if player is the first thing hit
+                if (hit.collider != null && hit.collider.gameObject.CompareTag("Character1Body"))
+                {
+                    // The player is seen
+                    Debug.Log("Character 1 Detected!");
+                }
+            }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        // Draw the FOV as a debug gizmo
+        Gizmos.color = Color.yellow;
+        //Gizmos.DrawWireSphere(transform.position, viewDistance);
+        Gizmos.DrawLine(transform.position, transform.position + Quaternion.Euler(0, 0, fovAngle * 0.5f) * transform.up * viewDistance);
+        Gizmos.DrawLine(transform.position, transform.position + Quaternion.Euler(0, 0, -fovAngle * 0.5f) * transform.up * viewDistance);
     }
 
 
