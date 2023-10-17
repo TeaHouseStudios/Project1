@@ -19,7 +19,8 @@ public class EnemyAI : MonoBehaviour
     GameObject character2;
     bool canSeeCharacter1 = false;
     bool canSeeCharacter2 = false;
-    
+    Vector2 fovDirection;
+
 
 
     // Start is called before the first frame update
@@ -74,8 +75,11 @@ public class EnemyAI : MonoBehaviour
         Vector2 toCharacter1 = character1.transform.position - transform.position;
         Vector2 toCharacter2 = character2.transform.position - transform.position;
 
-        // Check if player is within FOV angle
-        if (Vector2.Angle(transform.right, toCharacter1) < fovAngle * 0.5f)
+        // Determine the FOV direction based on whether the enemy is facing right or left
+        fovDirection = IsFacingRight() ? transform.right : -transform.right;
+
+        // Check if player is within FOV angle for Character 1
+        if (Vector2.Angle(fovDirection, toCharacter1) < fovAngle * 0.5f)
         {
             if (toCharacter1.magnitude < viewDistance)
             {
@@ -87,7 +91,9 @@ public class EnemyAI : MonoBehaviour
                 }
             }
         }
-        if (Vector2.Angle(transform.right, toCharacter2) < fovAngle * 0.5f)
+
+        // Check if player is within FOV angle for Character 2
+        if (Vector2.Angle(fovDirection, toCharacter2) < fovAngle * 0.5f)
         {
             if (toCharacter2.magnitude < viewDistance)
             {
@@ -121,7 +127,7 @@ public class EnemyAI : MonoBehaviour
         // Draw the FOV as a debug gizmo
         Gizmos.color = Color.yellow;
         //Gizmos.DrawWireSphere(transform.position, viewDistance);
-        Gizmos.DrawLine(transform.position, transform.position + Quaternion.Euler(0, 0, fovAngle * 0.5f) * transform.right * viewDistance);
-        Gizmos.DrawLine(transform.position, transform.position + Quaternion.Euler(0, 0, -fovAngle * 0.5f) * transform.right * viewDistance);
+        Gizmos.DrawLine(transform.position, transform.position + Quaternion.Euler(0, 0, fovAngle * 0.5f) * fovDirection * viewDistance);
+        Gizmos.DrawLine(transform.position, transform.position + Quaternion.Euler(0, 0, -fovAngle * 0.5f) * fovDirection * viewDistance);
     }
 }
