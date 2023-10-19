@@ -7,7 +7,7 @@ public class BlowUpwards : MonoBehaviour
 
     List<GameObject> blowingObjects = new List<GameObject>();
 
-    float fanMagnitude = 1f;
+    public float fanMagnitude = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -52,8 +52,14 @@ public class BlowUpwards : MonoBehaviour
 
         foreach (GameObject entityToBlow in blowingObjects)
         {
+            if (entityToBlow.GetComponent<Rigidbody2D>() != null)
             entityToBlow.GetComponent<Rigidbody2D>().AddForce(Vector2.up * fanMagnitude, ForceMode2D.Impulse);
         }
 
+    }
+
+    public void LetFanAffectObject(GameObject toBlow)
+    {
+        blowingObjects.Add(toBlow);
     }
 }

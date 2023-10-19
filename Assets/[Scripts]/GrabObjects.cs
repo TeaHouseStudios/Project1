@@ -58,6 +58,8 @@ public class GrabObjects : MonoBehaviour
                         pickup.transform.parent = null;
                         pickup.GetComponent<Rigidbody2D>().isKinematic = false;
                         pickup.GetComponent<BoxCollider2D>().isTrigger = false;
+
+                        // add the pickup object to any fan it's currently near
                     }
                 }
             }
