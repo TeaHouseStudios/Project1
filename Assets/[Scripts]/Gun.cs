@@ -15,7 +15,12 @@ public class Gun : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.L))
+        if(targetCharacter != null)
+        {
+            AimAtCharacter();
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
         {
             Fire();
         }
@@ -23,22 +28,29 @@ public class Gun : MonoBehaviour
 
     public void Fire()
     {
-        Vector2 bulletSpawnPosition = new Vector2(transform.position.x + 1, transform.position.y);
+        GameObject bulletIns = Instantiate(bulletPrefab, transform.position, transform.rotation);
 
-        GameObject bulletIns = Instantiate(bulletPrefab, bulletSpawnPosition, transform.rotation);
+        Rigidbody2D bulletRigidBody = bulletIns.GetComponent<Rigidbody2D>();
 
-        bulletIns.GetComponent<Rigidbody2D>().velocity = transform.right * shootForce;
+        Vector2 shootingVector = (targetCharacter.transform.position - transform.position).normalized;
+
+        bulletRigidBody.velocity = shootingVector * shootForce;
     }
 
 
     public void Aim(float azimuthToAim)
     {
         azimuth = azimuthToAim;
+
     }
 
 
     public void AimAtCharacter()
     {
-        // calculate angle to targetCharacter, send angle to Aim()
+        Vector3 directionToPlayer = targetCharacter.transform.position - transform.position;
+
+        float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 }

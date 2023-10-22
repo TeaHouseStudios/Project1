@@ -362,5 +362,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetCharacter: {fileID: 0}
-  bulletPrefab: {fileID: 3281915785967439101, guid: ac70c898bd82b254f9a08382d1013d7c, type: 3}
+  bulletPrefab: {fileID: 3281915785967439101, guid: 15566b3bacaa07544996c161be19dce8, type: 3}
   shootForce: 10
