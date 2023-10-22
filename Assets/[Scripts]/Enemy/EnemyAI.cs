@@ -28,7 +28,8 @@ public class EnemyAI : MonoBehaviour
     [Header("TARGETING")]
     public GameObject targetChar;
     public float sightTimer = 0f;
-    public float engageTimer = 2f;
+    public float minTimeBeforeEngage = 2f;
+    public float returnToPatrolTimer = 0f;
     public float maxTimeWithoutSight = 5f;
 
     // Start is called before the first frame update
@@ -86,13 +87,27 @@ public class EnemyAI : MonoBehaviour
             if (canSeeCharacter1 || canSeeCharacter2)
             {
                 sightTimer += Time.deltaTime;
-                if (sightTimer > engageTimer)
+                if (sightTimer > minTimeBeforeEngage)
                 {
                     //DIRECT UNBROKEN SIGHTLINE FOR X SECONDS
                     Debug.Log("ATTACK PLAYER!");
                 }
             }
+            if (hasSeenCharacter)
+            {
+                returnToPatrolTimer += Time.deltaTime;
+                if (returnToPatrolTimer > maxTimeWithoutSight)
+                {
+                    hasSeenCharacter = false;
+                    //DIRECT UNBROKEN SIGHTLINE FOR X SECONDS
+                    fsm.TransitionTo("Patroling");
+                }
+            }
             
+        };
+        investigatingState.onExit = delegate
+        {
+
         };
     }
 
@@ -127,6 +142,7 @@ public class EnemyAI : MonoBehaviour
                 {
                     canSeeCharacter1 = true;
                     hasSeenCharacter = true;
+                    returnToPatrolTimer = 0f;
                 }
                 else
                 {
@@ -155,10 +171,11 @@ public class EnemyAI : MonoBehaviour
                 {
                     canSeeCharacter2 = true;
                     hasSeenCharacter = true;
+                    returnToPatrolTimer = 0f;
                 }
                 else
                 {
-                    if (canSeeCharacter2) // if Character1 was previously in sight and now isn't
+                    if (canSeeCharacter2) // if Character2 was previously in sight and now isn't
                     {
                         sightTimer = 0f;
                         canSeeCharacter2 = false;
@@ -166,7 +183,7 @@ public class EnemyAI : MonoBehaviour
                 }
             }
         }
-        else if (canSeeCharacter2) // if Character1 was previously in sight and now isn't
+        else if (canSeeCharacter2) // if Character2 was previously in sight and now isn't
         {
             sightTimer = 0f;
             canSeeCharacter2 = false;
