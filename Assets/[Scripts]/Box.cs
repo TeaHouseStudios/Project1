@@ -40,7 +40,10 @@ public class Box : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        canBeDropped = false;
+        if(collision.GetComponent<BlowUpwards>() == null)
+        {
+            canBeDropped = false;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
