@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 using UnityEngine.TextCore.Text;
+using UnityEngine.UIElements;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -17,24 +19,30 @@ public class EnemyAI : MonoBehaviour
     public LayerMask obstacleLayer;
     GameObject character1;
     GameObject character2;
+    bool hasSeenCharacter = false;
     bool canSeeCharacter1 = false;
     bool canSeeCharacter2 = false;
     Vector2 fovDirection;
+    bool changeToEngagerunning = false;
 
-
+    [Header("TARGETING")]
+    public GameObject targetChar;
+    public float sightTimer = 0f;
+    public float engageTimer = 2f;
+    public float maxTimeWithoutSight = 5f;
 
     // Start is called before the first frame update
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        character1 = GameObject.FindGameObjectWithTag("Character1");
+        character2 = GameObject.FindGameObjectWithTag("Character2");
     }
 
     private void Start()
     {
         fsm = new FiniteStateMachine();
-
-        character1 = GameObject.FindGameObjectWithTag("Character1");
-        character2 = GameObject.FindGameObjectWithTag("Character2");
 
         var patrolingState = fsm.CreateState("Patroling");
         var investigatingState = fsm.CreateState("Investigating");
@@ -56,6 +64,35 @@ public class EnemyAI : MonoBehaviour
             {
                 rb.velocity = new Vector2(-moveSpeed, 0f);
             }
+            if (hasSeenCharacter)
+            {
+                fsm.TransitionTo("Investigating");
+            }
+        };
+        patrolingState.onExit = delegate
+        {
+            
+        };
+        investigatingState.onEnter = delegate
+        {
+            Debug.Log("ENTER INVESTIGATE STATE");
+            //START Search TIMER
+            
+
+        };
+        investigatingState.onFrame = delegate
+        {
+            CheckForPlayer();
+            if (canSeeCharacter1 || canSeeCharacter2)
+            {
+                sightTimer += Time.deltaTime;
+                if (sightTimer > engageTimer)
+                {
+                    //DIRECT UNBROKEN SIGHTLINE FOR X SECONDS
+                    Debug.Log("ATTACK PLAYER!");
+                }
+            }
+            
         };
     }
 
@@ -72,6 +109,8 @@ public class EnemyAI : MonoBehaviour
 
     private void CheckForPlayer()
     {
+        
+
         Vector2 toCharacter1 = character1.transform.position - transform.position;
         Vector2 toCharacter2 = character2.transform.position - transform.position;
 
@@ -84,12 +123,25 @@ public class EnemyAI : MonoBehaviour
             if (toCharacter1.magnitude < viewDistance)
             {
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, toCharacter1.normalized, viewDistance, playerLayer | obstacleLayer);
-                // Check if player is the first thing hit
                 if (hit.collider != null && hit.collider.gameObject.CompareTag("Character1Body"))
                 {
-                    Debug.Log("Character 1 Detected!");
+                    canSeeCharacter1 = true;
+                    hasSeenCharacter = true;
+                }
+                else
+                {
+                    if (canSeeCharacter1) // if Character1 was previously in sight and now isn't
+                    {
+                        sightTimer = 0f;
+                        canSeeCharacter1 = false;
+                    }
                 }
             }
+        }
+        else if (canSeeCharacter1) // if Character1 was previously in sight and now isn't
+        {
+            sightTimer = 0f;
+            canSeeCharacter1 = false;
         }
 
         // Check if player is within FOV angle for Character 2
@@ -101,9 +153,23 @@ public class EnemyAI : MonoBehaviour
                 // Check if player is the first thing hit
                 if (hit.collider != null && hit.collider.gameObject.CompareTag("Character2Body"))
                 {
-                    Debug.Log("Character 2 Detected!");
+                    canSeeCharacter2 = true;
+                    hasSeenCharacter = true;
+                }
+                else
+                {
+                    if (canSeeCharacter2) // if Character1 was previously in sight and now isn't
+                    {
+                        sightTimer = 0f;
+                        canSeeCharacter2 = false;
+                    }
                 }
             }
+        }
+        else if (canSeeCharacter2) // if Character1 was previously in sight and now isn't
+        {
+            sightTimer = 0f;
+            canSeeCharacter2 = false;
         }
     }
 
