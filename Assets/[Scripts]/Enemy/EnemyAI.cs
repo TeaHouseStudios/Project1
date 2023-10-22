@@ -49,6 +49,7 @@ public class EnemyAI : MonoBehaviour
         var investigatingState = fsm.CreateState("Investigating");
         var engagingState = fsm.CreateState("Engaging");
         var baitedState = fsm.CreateState("Baited");
+        var sleepingState = fsm.CreateState("Sleeping");
 
         patrolingState.onEnter = delegate
         {
