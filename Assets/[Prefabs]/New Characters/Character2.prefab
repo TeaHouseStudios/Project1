@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 7822252103635976856}
   m_Layer: 9
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Character2Body
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -210,6 +210,8 @@ GameObject:
   - component: {fileID: 51274516}
   - component: {fileID: 7106426732492723628}
   - component: {fileID: -5816476102191265556}
+  - component: {fileID: 596510298}
+  - component: {fileID: 596510299}
   m_Layer: 9
   m_Name: Character2
   m_TagString: Character2
@@ -331,6 +333,7 @@ MonoBehaviour:
   footstepsSound: {fileID: 51274516}
   hasEnteredDoor: 0
   isDead: 0
+  hasKey: 0
   activeIndicator: {fileID: 774901826}
   speed: 8
   maxSpeed: 10
@@ -490,6 +493,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactDetect: {fileID: 71261049986709213}
   rayDistance: 2
+--- !u!114 &596510298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7822252104265216726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f79ed1193ebb97845a6f3838c645304d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canBoost: 1
+  isBoosting: 0
+  speedIncreaseFactor: 1.5
+  jumpIncreaseFactor: 1
+--- !u!114 &596510299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7822252104265216726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c4ec7c539c11ab47bb59e701e79b9e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charInVentRange: 0
 --- !u!1 &7822252105102621399
 GameObject:
   m_ObjectHideFlags: 0
