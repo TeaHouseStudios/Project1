@@ -90,8 +90,29 @@ public class EnemyAI : MonoBehaviour
                 sightTimer += Time.deltaTime;
                 if (sightTimer > minTimeBeforeEngage)
                 {
-                    //DIRECT UNBROKEN SIGHTLINE FOR X SECONDS
-                    Debug.Log("ATTACK PLAYER!");
+                    //ATTACK PLAYER SECTION
+                    if (canSeeCharacter1 && canSeeCharacter2)
+                    {
+                        //target which ever character is closer to the enemy
+                        float dist1 = Vector3.Distance(character1.transform.position, transform.position);
+                        float dist2 = Vector3.Distance(character2.transform.position, transform.position);
+
+                        if (dist1 >= dist2)
+                        {
+                            targetChar = character2;
+                        }
+                        else
+                        {
+                            targetChar = character1;
+                        }
+                    }
+                    else if(canSeeCharacter1){
+                        targetChar = character1;
+                    }
+                    else if (canSeeCharacter2)
+                    {
+                        targetChar = character2;
+                    }
                 }
             }
             if (hasSeenCharacter)
