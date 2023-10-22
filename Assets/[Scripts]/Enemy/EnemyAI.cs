@@ -11,6 +11,7 @@ public class EnemyAI : MonoBehaviour
     [Header("Unity")]
     Rigidbody2D rb;
     FiniteStateMachine fsm;
+    public GameObject enemyGun;
 
     [Header("FOV")]
     public float viewDistance;
@@ -43,6 +44,8 @@ public class EnemyAI : MonoBehaviour
 
     private void Start()
     {
+        enemyGun = this.gameObject.transform.GetChild(0).gameObject;
+
         fsm = new FiniteStateMachine();
 
         var patrolingState = fsm.CreateState("Patroling");
@@ -99,19 +102,20 @@ public class EnemyAI : MonoBehaviour
 
                         if (dist1 >= dist2)
                         {
-                            targetChar = character2;
+                            enemyGun.GetComponent<Gun>().targetCharacter = character2;
+                            //targetChar = character2;
                         }
                         else
                         {
-                            targetChar = character1;
+                            enemyGun.GetComponent<Gun>().targetCharacter = character1;
                         }
                     }
                     else if(canSeeCharacter1){
-                        targetChar = character1;
+                        enemyGun.GetComponent<Gun>().targetCharacter = character1;
                     }
                     else if (canSeeCharacter2)
                     {
-                        targetChar = character2;
+                        enemyGun.GetComponent<Gun>().targetCharacter = character2;
                     }
                 }
             }
