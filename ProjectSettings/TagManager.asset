@@ -17,6 +17,7 @@ TagManager:
   - PlayerKey
   - Character1Body
   - Character2Body
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -29,8 +30,8 @@ TagManager:
   - Pickup
   - Character
   - Throwable
-  - 
-  - 
+  - Enemy
+  - Bullet
   - 
   - 
   - 
