@@ -9504,30 +9504,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 4234202337569449245, guid: c43f97b1d9b3f9b41bc90883590b2893, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 4234202337569449245, guid: c43f97b1d9b3f9b41bc90883590b2893, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 5181526536462382804, guid: c43f97b1d9b3f9b41bc90883590b2893, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 5181526536462382804, guid: c43f97b1d9b3f9b41bc90883590b2893, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 5181526537405064202, guid: c43f97b1d9b3f9b41bc90883590b2893, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 5181526537405064202, guid: c43f97b1d9b3f9b41bc90883590b2893, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c43f97b1d9b3f9b41bc90883590b2893, type: 3}
 --- !u!1001 &7106426732492723626
