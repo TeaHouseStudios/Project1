@@ -128,20 +128,24 @@ public class EnemyAI : MonoBehaviour
                 if (dist1 >= dist2)
                 {
                     enemyGun.GetComponent<Gun>().targetCharacter = character2;
+                    enemyGun.GetComponent<Gun>().Fire();
                     //targetChar = character2;
                 }
                 else
                 {
                     enemyGun.GetComponent<Gun>().targetCharacter = character1;
+                    enemyGun.GetComponent<Gun>().Fire();
                 }
             }
             else if (canSeeCharacter1)
             {
                 enemyGun.GetComponent<Gun>().targetCharacter = character1;
+                enemyGun.GetComponent<Gun>().Fire();
             }
             else if (canSeeCharacter2)
             {
                 enemyGun.GetComponent<Gun>().targetCharacter = character2;
+                enemyGun.GetComponent<Gun>().Fire();
             }
         };
         engagingState.onFrame = delegate
