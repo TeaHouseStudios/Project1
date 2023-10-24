@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 4234202337569449242}
   - component: {fileID: 4234202337569449240}
   - component: {fileID: 4234202337569449239}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -190,9 +190,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5181526536462382803}
   - component: {fileID: 5181526536462382802}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -275,9 +275,9 @@ GameObject:
   - component: {fileID: 5181526537405064201}
   - component: {fileID: 5181526537405064215}
   - component: {fileID: 5181526537405064200}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Gun
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
