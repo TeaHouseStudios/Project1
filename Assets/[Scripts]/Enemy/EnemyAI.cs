@@ -33,6 +33,10 @@ public class EnemyAI : MonoBehaviour
     public float returnToPatrolTimer = 0f;
     public float maxTimeWithoutSight = 5f;
 
+    [Header("SHOOTING")]
+    public float shootCooldown = 3.0f;
+    private float nextShootTimer = 0f;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -140,6 +144,16 @@ public class EnemyAI : MonoBehaviour
                 enemyGun.GetComponent<Gun>().targetCharacter = character2;
             }
         };
+        engagingState.onFrame = delegate
+        {
+            HandleEnemyShooting();
+        };
+        engagingState.onExit = delegate
+        {
+            nextShootTimer = 0;
+            enemyGun.GetComponent<Gun>().targetCharacter = null;
+            
+        };
         
     }
 
@@ -147,6 +161,18 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         fsm.Update();
+    }
+
+    private void HandleEnemyShooting()
+    {
+        nextShootTimer += Time.deltaTime;
+        if (nextShootTimer >= shootCooldown)
+        {
+            //SHOOT
+            nextShootTimer = 0;
+            enemyGun.GetComponent<Gun>().Fire();
+            
+        }
     }
 
     private bool IsFacingRight()
