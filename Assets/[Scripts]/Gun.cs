@@ -17,10 +17,6 @@ public class Gun : MonoBehaviour
             AimAtCharacter();
         }
 
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            Fire();
-        }
     }
 
     public void Fire()
