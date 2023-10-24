@@ -10,9 +10,6 @@ public class Gun : MonoBehaviour
     public GameObject bulletPrefab;
     public float shootForce;
 
-    GameObject target;
-    float azimuth = 0;
-
     private void Update()
     {
         if(targetCharacter != null)
@@ -35,13 +32,6 @@ public class Gun : MonoBehaviour
         Vector2 shootingVector = (targetCharacter.transform.position - transform.position).normalized;
 
         bulletRigidBody.velocity = shootingVector * shootForce;
-    }
-
-
-    public void Aim(float azimuthToAim)
-    {
-        azimuth = azimuthToAim;
-
     }
 
 
