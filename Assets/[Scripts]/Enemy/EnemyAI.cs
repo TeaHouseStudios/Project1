@@ -91,6 +91,7 @@ public class EnemyAI : MonoBehaviour
         };
         investigatingState.onFrame = delegate
         {
+            //MOVEMENT OF THIS STATE NEEDS IMPLEMENTING
             CheckForPlayer();
             if (canSeeCharacter1 || canSeeCharacter2)
             {
@@ -118,6 +119,8 @@ public class EnemyAI : MonoBehaviour
         };
         engagingState.onEnter = delegate
         {
+            //MOVEMENT OF THIS SECTION NEEDS IMPLEMENTING
+
             //ATTACK PLAYER SECTION
             if (canSeeCharacter1 && canSeeCharacter2)
             {
@@ -147,10 +150,25 @@ public class EnemyAI : MonoBehaviour
                 enemyGun.GetComponent<Gun>().targetCharacter = character2;
                 enemyGun.GetComponent<Gun>().Fire();
             }
+
+            
         };
         engagingState.onFrame = delegate
         {
             HandleEnemyShooting();
+            CheckForPlayer();
+            //RETURN TO PATROLLING
+
+            if (hasSeenCharacter)
+            {
+                returnToPatrolTimer += Time.deltaTime;
+                if (returnToPatrolTimer > maxTimeWithoutSight)
+                {
+                    hasSeenCharacter = false;
+                    //DIRECT UNBROKEN SIGHTLINE FOR X SECONDS
+                    fsm.TransitionTo("Patroling");
+                }
+            }
         };
         engagingState.onExit = delegate
         {
