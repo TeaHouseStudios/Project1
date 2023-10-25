@@ -176,6 +176,18 @@ public class EnemyAI : MonoBehaviour
             enemyGun.GetComponent<Gun>().targetCharacter = null;
             
         };
+        sleepingState.onEnter = delegate
+        {
+
+        };
+        sleepingState.onFrame = delegate 
+        {
+
+        };
+        sleepingState.onExit = delegate
+        {
+
+        };
         
     }
 
