@@ -18,6 +18,7 @@ TagManager:
   - Character1Body
   - Character2Body
   - Enemy
+  - Cam1
   layers:
   - Default
   - TransparentFX
