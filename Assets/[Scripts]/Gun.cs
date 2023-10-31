@@ -37,6 +37,11 @@ public class Gun : MonoBehaviour
 
         float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
 
+        if (transform.parent.localScale.x < 0) // If parent (enemy) is flipped
+        {
+            angle += 180; // Adjust the angle
+        }
+
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 }

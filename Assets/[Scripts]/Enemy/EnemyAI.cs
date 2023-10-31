@@ -27,7 +27,7 @@ public class EnemyAI : MonoBehaviour
     bool changeToEngagerunning = false;
 
     [Header("TARGETING")]
-    public GameObject targetChar;
+    public GameObject targetChar = null;
     public float sightTimer = 0f;
     public float minTimeBeforeEngage = 2f;
     public float returnToPatrolTimer = 0f;
@@ -131,23 +131,27 @@ public class EnemyAI : MonoBehaviour
                 if (dist1 >= dist2)
                 {
                     enemyGun.GetComponent<Gun>().targetCharacter = character2;
+                    targetChar = character2;
                     enemyGun.GetComponent<Gun>().Fire();
                     //targetChar = character2;
                 }
                 else
                 {
                     enemyGun.GetComponent<Gun>().targetCharacter = character1;
+                    targetChar = character1;
                     enemyGun.GetComponent<Gun>().Fire();
                 }
             }
             else if (canSeeCharacter1)
             {
                 enemyGun.GetComponent<Gun>().targetCharacter = character1;
+                targetChar = character1;
                 enemyGun.GetComponent<Gun>().Fire();
             }
             else if (canSeeCharacter2)
             {
                 enemyGun.GetComponent<Gun>().targetCharacter = character2;
+                targetChar = character2;
                 enemyGun.GetComponent<Gun>().Fire();
             }
 
@@ -158,6 +162,18 @@ public class EnemyAI : MonoBehaviour
             HandleEnemyShooting();
             CheckForPlayer();
             //RETURN TO PATROLLING
+
+            if (targetChar != null)
+            {
+                if (IsFacingRight() && targetChar.transform.position.x < transform.position.x)
+                {
+                    Flip();
+                }
+                else if (!IsFacingRight() && targetChar.transform.position.x > transform.position.x)
+                {
+                    Flip();
+                }
+            }
 
             if (hasSeenCharacter)
             {
@@ -174,7 +190,7 @@ public class EnemyAI : MonoBehaviour
         {
             nextShootTimer = 0;
             enemyGun.GetComponent<Gun>().targetCharacter = null;
-            
+            targetChar = null;
         };
         sleepingState.onEnter = delegate
         {
