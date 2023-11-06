@@ -12,6 +12,7 @@ public class EnemyAI : MonoBehaviour
     Rigidbody2D rb;
     FiniteStateMachine fsm;
     public GameObject enemyGun;
+    public GameObject enemyAlertedIcon;
 
     [Header("FOV")]
     public float viewDistance;
@@ -44,11 +45,13 @@ public class EnemyAI : MonoBehaviour
 
         character1 = GameObject.FindGameObjectWithTag("Character1");
         character2 = GameObject.FindGameObjectWithTag("Character2");
+        
     }
 
     private void Start()
     {
         enemyGun = this.gameObject.transform.GetChild(0).gameObject;
+        enemyAlertedIcon = this.gameObject.transform.GetChild(1).gameObject;
 
         fsm = new FiniteStateMachine();
 
@@ -86,7 +89,7 @@ public class EnemyAI : MonoBehaviour
         {
             Debug.Log("ENTER INVESTIGATE STATE");
             //START Search TIMER
-            
+            enemyAlertedIcon.gameObject.SetActive(true);
 
         };
         investigatingState.onFrame = delegate
@@ -115,7 +118,7 @@ public class EnemyAI : MonoBehaviour
         };
         investigatingState.onExit = delegate
         {
-
+            enemyAlertedIcon.gameObject.SetActive(false);
         };
         engagingState.onEnter = delegate
         {

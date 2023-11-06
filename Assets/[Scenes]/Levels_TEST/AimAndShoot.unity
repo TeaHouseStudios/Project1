@@ -1703,6 +1703,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 4457553718234272869, guid: c43f97b1d9b3f9b41bc90883590b2893, type: 3}
+      propertyPath: m_Name
+      value: Alerted
+      objectReference: {fileID: 0}
+    - target: {fileID: 4457553718234272869, guid: c43f97b1d9b3f9b41bc90883590b2893, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4598175775779822010, guid: c43f97b1d9b3f9b41bc90883590b2893, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 6692523881776597126, guid: c43f97b1d9b3f9b41bc90883590b2893, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6f7be94e482fcd549bc914568aaa8b06, type: 3}
+    - target: {fileID: 6692523881776597126, guid: c43f97b1d9b3f9b41bc90883590b2893, type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6692523881776597126, guid: c43f97b1d9b3f9b41bc90883590b2893, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 555200239
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c43f97b1d9b3f9b41bc90883590b2893, type: 3}
 --- !u!1 &699434648
