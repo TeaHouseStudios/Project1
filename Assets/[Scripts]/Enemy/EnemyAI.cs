@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour
     public float moveSpeed = 1f;
     [Header("Unity")]
     Rigidbody2D rb;
-    FiniteStateMachine fsm;
+    public FiniteStateMachine fsm; // we will see if public works
     public GameObject enemyGun;
 
     [Header("FOV")]
@@ -194,7 +194,7 @@ public class EnemyAI : MonoBehaviour
         };
         sleepingState.onEnter = delegate
         {
-
+            Debug.Log("ZZZZZ");
         };
         sleepingState.onFrame = delegate 
         {
