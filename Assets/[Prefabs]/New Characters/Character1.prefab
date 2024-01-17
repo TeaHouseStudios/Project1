@@ -662,6 +662,7 @@ MonoBehaviour:
   dartPrefab: {fileID: 3281915785967439101, guid: ac70c898bd82b254f9a08382d1013d7c, type: 3}
   shootForce: 30
   readyToFire: 1
+  shootTimer: 10
 --- !u!114 &2004333303
 MonoBehaviour:
   m_ObjectHideFlags: 0

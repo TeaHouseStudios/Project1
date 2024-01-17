@@ -37,6 +37,10 @@ public class EnemyAI : MonoBehaviour
     public float shootCooldown = 3.0f;
     private float nextShootTimer = 0f;
 
+    [Header("SLEEPING")]
+    public float sleepTimer = 5f;
+    private bool sleepComplete = false;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -195,10 +199,15 @@ public class EnemyAI : MonoBehaviour
         sleepingState.onEnter = delegate
         {
             Debug.Log("ZZZZZ");
+            StartCoroutine(SleepCooldown()); // 10 second cooldown until you can next fire a dart
         };
         sleepingState.onFrame = delegate 
         {
-
+            if (sleepComplete)
+            {
+                sleepComplete = false;
+                fsm.TransitionTo("Patroling");
+            }
         };
         sleepingState.onExit = delegate
         {
@@ -212,6 +221,20 @@ public class EnemyAI : MonoBehaviour
     {
         fsm.Update();
     }
+
+    IEnumerator SleepCooldown()
+    {
+        Debug.Log("START TIMER");
+        sleepComplete = false;
+
+        yield return new WaitForSeconds(sleepTimer); // timer to wake up.
+
+        sleepComplete = true;
+        Debug.Log("END TIMER");
+
+    }
+
+
 
     private void HandleEnemyShooting()
     {
