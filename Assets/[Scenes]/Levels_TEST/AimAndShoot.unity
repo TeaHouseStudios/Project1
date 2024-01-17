@@ -9444,10 +9444,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2004333302, guid: 22fdeb90dbf58094baecccafe63204da, type: 3}
-      propertyPath: shootTimer
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2941748894164095270, guid: 22fdeb90dbf58094baecccafe63204da, type: 3}
       propertyPath: m_RootOrder
       value: 4
