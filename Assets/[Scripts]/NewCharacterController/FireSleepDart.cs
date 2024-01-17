@@ -8,6 +8,7 @@ public class FireSleepDart : MonoBehaviour
     public float shootForce = 10.0f;
     int directionToShoot;
     public bool readyToFire = true;
+    public float shootTimer = 10.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -49,7 +50,7 @@ public class FireSleepDart : MonoBehaviour
     {
         readyToFire = false;
 
-        yield return new WaitForSeconds(10.0f); // 10 second break
+        yield return new WaitForSeconds(shootTimer); // 10 second break
 
         readyToFire = true;
     }
